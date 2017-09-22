@@ -13846,8 +13846,9 @@ PWOMMUHDkp4xxpigYUnPGGNM0Ph/2yq2uAx1takAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>We divide the data into a training and testing set. We cannot use the testing set for training and thus end up losing some data for training. We can avoid this by dividing the data into k sets. We can use 1 set as our testing set and the other k -1 as our training set. But we don't end there; In the next run, we then choose a different set as the testing set and the other remaining k -1 sets as the training set. Thus, k trials are done. With this technique we end up using the entire data for both testing and training.</p>
-<p>We can use the k fold cross validation along with grid search cv and by doing so we are combining 2 very useful and powerful methods/tools. Apart from choosing the best model we want to ensure that the model responds well to unseen data.</p>
+<p>The k-fold cross validation is an improvement over the holdout method. The training data is divided into k subsets. One of these is used as the test set and the remaining k-1 subsets form the training set. This is repeated k times but in each run, a different subset is chosen as the test set. Thus each and every set among the k subsets is used as the test set once. Each run will give an error and the final error is the average of the k different errors. As k is increased the variance of the estimate is decreased. it doesn't matter how the data gets divided and the order of the data is also not important. With k runs, the computation time will increase by a factor of k.</p>
+<p>We can use the k fold cross validation along with grid search cv and by doing so we are combining 2 very useful and powerful methods/tools.</p>
+<p>The data needs to be divided into 2 parts. One part is for model selection and the other is for testing. We essentially will be doing cross validation twice, once for model selection and then for testing. In this stage we choose the method that gives the least cross validation error. Once this has been done we can test against the test data that was not seen by the algorithm during model selection. Thus our model will not be biased and thus will perform well on unseen data.</p>
 
 </div>
 </div>
@@ -14089,8 +14090,9 @@ Predicted selling price for Client 3&#39;s home: $938,053.85
 <p>Predicted selling price for Client 3's home: $938,053.85</p>
 <p>Based on the model, the above prices should be recommended to the clients.
 Based on our previous analysis, these values seem inline with expectation.</p>
-<p>Let us take Client 3. The Home is large with 8 rooms, is in an affluent neighborhood with a very low poverty level and the schools have a low student-teacher ratio. These features give it a high home price.</p>
-<p>In the case of client 2. The home has 4 rooms and is in a neighborhood with a higher poverty level and the school has a high student-teacher ratio. This should lead to a lower home price.</p>
+<p>Let us take Client 3. The Home is large with 8 rooms, is in an affluent neighborhood with a very low poverty level and the schools have a low student-teacher ratio. These features give it a high home price. The selling price is justified; also the maximum price in the data set is a little over a million and given the features it is conceivable that Client 3's home will be close to $1 million.</p>
+<p>In the case of Client 2. The home has 4 rooms and is in a neighborhood with a higher poverty level and the school has a high student-teacher ratio. This should lead to a lower home price. The neighborhood poverty level is 32 percent and this means that 1 in 3 people will be lower class people. This home is not in a "sought after" neighborhood and thus the price is justified.</p>
+<p>Client 1 is an interesting case. First the number of rooms is 5 which is above that of client 2 and below that of client 3. The number of rooms is close to that of client 2. The Student-teacher ratio is actually close to that of client 3's home. Finally the poverty level of this home is in between that of client 2's home and client 3's home. I would expect the price of this home to be close to the median and mean of the data set and thus the price of $404,911.11 is justified.</p>
 
 </div>
 </div>
