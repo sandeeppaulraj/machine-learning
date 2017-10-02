@@ -11819,7 +11819,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries necessary for this project</span>
@@ -11940,7 +11940,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Total number of records</span>
@@ -11953,7 +11953,7 @@ div#notebook {
 <span class="n">n_at_most_50k</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;income&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&lt;=50K&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">income</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 
 <span class="c1"># TODO: Percentage of individuals whose income is more than $50,000</span>
-<span class="n">greater_percent</span> <span class="o">=</span> <span class="n">n_greater_50k</span><span class="o">*</span><span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="n">n_greater_50k</span> <span class="o">+</span> <span class="n">n_at_most_50k</span><span class="p">)</span>
+<span class="n">greater_percent</span> <span class="o">=</span> <span class="n">n_greater_50k</span><span class="o">*</span><span class="mf">100.0</span><span class="o">/</span><span class="p">(</span><span class="n">n_greater_50k</span> <span class="o">+</span> <span class="n">n_at_most_50k</span><span class="p">)</span>
 
 <span class="c1"># Print the results</span>
 <span class="k">print</span> <span class="s2">&quot;Total number of records: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_records</span><span class="p">)</span>
@@ -11977,7 +11977,7 @@ div#notebook {
 <pre>Total number of records: 45222
 Individuals making more than $50,000: 11208
 Individuals making at most $50,000: 34014
-Percentage of individuals making more than $50,000: 0.25%
+Percentage of individuals making more than $50,000: 24.78%
 </pre>
 </div>
 </div>
@@ -14164,6 +14164,11 @@ Look at the graph at the bottom left from the cell above(the visualization creat
 <p><strong>Answer: </strong></p>
 <p>Adaboostclassifier will perform well with our dataset since we have a large dataste with a lot of features. Adaboost performs well since it will tell us what the best features and what the best thresholds are and combine them for us to give us an optimal final result. Adaboost is an ensemble technique which combines a set of weak classifiers to give us a strong classifier. This algorithm is trained iteratively. In each iteration based on how well it managed to clasify the dataset, larger weigths are assigned to those observations that it did not manage to classify correctly. Thus in the next iteration, the algorithm tries to classify the more complex observations that it did not classify correctly in the previous run. Based on the results, higher weights are assigned to those that were misclassified. This process continues for a number of iterations that is essentially chosen by the user to give a final weighted hyposthesis that will perform well on the unseen data.
 This classifer will work well on CharityML since we have a large data set with a large set of features and we have a binary classification problem. Basically in the end weak learners are combined to create a strong learner. Boosting focuses on exmples that have been misclassified and have higher errors on previous runs/weak rules.</p>
+<p><a href="http://blog.echen.me/2011/03/14/laymans-introduction-to-random-forests/">http://blog.echen.me/2011/03/14/laymans-introduction-to-random-forests/</a></p>
+<p><a href="https://www.analyticsvidhya.com/blog/2015/09/complete-guide-boosting-methods/">https://www.analyticsvidhya.com/blog/2015/09/complete-guide-boosting-methods/</a></p>
+<p>Based on the above 2 sources given to me by the first reviewer i am adding the following to my answer.</p>
+<p>Let us assume that there are several people A,B,C and D who either work at CharityML or have been tasked with predicting whether a certain person X1 will donate to the charity or not. Let us start with person A. Person A looks at the data and based on that he/she generalizes and starts asking questions. The questions that person A might ask are like "is age greater than 25", "is education level greater than equal to Bachelors' degree" and "are hours worked greatee than 30". Essentially a tree is formed and based on this we essentially have a game like 20 questions. Thus every question that is asked is like a node of a Decsion tree, we can follow the various paths based on the questions and then come to the conclusion whether a person X1 will donate to charity or not.</p>
+<p>However, A is human and will have certain inherent biases and may not generalize well so this is where B,C and D come into the picture. The same process as above is followed, however each of them(B,C and D) is given a slightly perturbed version of the data. This is important since if B,C and D are given the same data as A they will end up getting the same answer which is not what we want. With the perturbed version of the data B, C and D also start asking questions and individually come to a conclusion. The important thing here is that they will in all likelihood ask different questions to reach the conclusion. Infact they should only be allowed to ask a random subset of questions to reach their conclusion. So at the end of the individual processes we essentially have individual trees. Voting is then done to get to a final answer. Since we have individual trees we have what is called a forest and as mentioned we use a random subset of questions so we have what is called a random forest. This will reduce error and since we vote, if a majority say the person X1 will donate then the likelihood of correct answer goes up.</p>
 
 </div>
 </div>
