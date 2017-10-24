@@ -14085,7 +14085,7 @@ DMMwDMMwjCny/wF2eAYjCf/r7QAAAABJRU5ErkJggg==
 <p>Most of the graphs are right skewed. A high percentage of the points are towards the right of the mode.</p>
 <p>From the praphs above, we can see that Detergents_Paper seems to be correlated to Grocery and Milk.
 Also Grocery and Milk seem to be correlated.
-This confirms thay trying to predict Detergents_Peper was the correct thing to do as it can be predicted from the other variables. For features that are correlated the distribution will be normal. However, in our case this doesn't seem to be the case. The distribution of points seems skewed to the origin.</p>
+This confirms thay trying to predict Detergents_Paper was the correct thing to do as it can be predicted from the other variables.However, in our case this doesn't seem to be the case. The distribution of points seems skewed to the origin.</p>
 
 </div>
 </div>
@@ -19152,7 +19152,7 @@ Removing ouliers will help us in clustering the remaining data and reduce the di
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
@@ -19531,10 +19531,14 @@ CyZJkiRJ6rBgkiRJkqSO/wUmsGpjgOjg6AAAAABJRU5ErkJggg==
 <p>Variance in data explained by first 2 components:  0.7068</p>
 <p>Variance in data explained by first 4 components:  0.9311
 Individually the first 4 components explain 0.4430, 0.2638, 0.1231 and 0.1012 of the variance.</p>
-<p>Dimension 1: The hallmark of this dimension is the customers belonging to this spend way below average in Detergents_Paper. The also spend below average in Grocery and Milk. They dont' spend much on Delicatessen either. They tend to spend above average on Frozen and Fresh. This could be a small restauarnt selling burgers.</p>
-<p>Dimension 2: This dimension represents those customers that spend way less than average on Delicatessen, Frozen and Fresh. This could be a cafeteria selling mainly coffee or maybe a specialized ice cream parlor since they spend just below average on Milk and Grocery.</p>
-<p>Dimension 3: In this the customer spending is above average on Delicatessen and Frozen. They spend way less on Fresh and don't spend much on Detergents_Paper. This could be a Deli by the highway or even a small retailer on the highway.</p>
-<p>Dimension 4: Customers in this dimension spend way above average on Frozen stuff. They also spend a sufficient amount on Detergents_Paper. They spend way less on Fresh and also on Delicatessen. This looks to me to be a motel. They need a lot of Detergents_Paper and probably spend a lot of money on the free morning breakfast which is usually stocked with Frozen stuff.</p>
+<p>Analysis based on link provided by first reviewer.
+<a href="https://onlinecourses.science.psu.edu/stat505/node/54">https://onlinecourses.science.psu.edu/stat505/node/54</a>
+Learned that magnitude of the weights is what really matters and not the sign.</p>
+<p>Dimension 1: The hallmark of this dimension is the customers belonging to this have a large negative emphasis in Detergents_Paper. The also seem to have a smaller yet large large negative emphasis in Grocery and Milk. This signifies the spending to be more in line with that of a retailer. Customers with high values in this component will purchase a lot of Detergents_Paper, Grocery and Milk.</p>
+<p>Dimension 2: In this a large negative emphasis is placed on Delicatessen, Frozen and Fresh.
+This kind of spending is best represented by a restaurant. Customers with high values in this component will purchase a lot of Delicatessen, Frozen and Fresh.</p>
+<p>Dimension 3: In this the customer spending is above average on Delicatessen,Frozen and Fresh. They spend way less on Milk and Grocery. Customers with high values in this component will purchase a lot of Delicatessen, Frozen and Fresh and purchase very little of Milk and Grocery. This could be a Deli by the highway or even a small retailer on the highway.</p>
+<p>Dimension 4: Customers in this dimension spend way above average on Frozen stuff. They also tend to spend a large amount on Delicatessen. They also spend a sufficient amount on Detergents_Paper and Fresh. They spend way less on Milk and Grocery. This looks to me to be a hotel. They probably spend a lot of money on the free morning breakfast which is usually stocked with Frozen stuff.Customers with high values in this component will purchase a lot of Frozen and Delicatessen, purchase a sufficient amount of Detergents_Paper and Fresh and spend very little on Milk and Grocery.</p>
 
 </div>
 </div>
@@ -21792,7 +21796,7 @@ gg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>Cluster 0: Looking at the figures and specifically the high values for Grocery and Detergents_Paper, this cluster is best identified with supermarkets/grocery/convenient stores.</p>
+<p>Cluster 0: Looking at the figures and specifically the values for Grocery and Detergents_Paper, this cluster is best identified with supermarkets/grocery/convenient stores. The value of grocery is 12219.0 which is greater than the mean and also greater than the 75 percentile. The value of Detergents_Paper is 4696. This value also happens to be greater than both the mean and 75 percentile. This is the reason i believe this cluster is best identified with supermarkets/grocery/convenient stores.</p>
 <p>Cluster 1: Looking at the data, this has all the hallmark of a small establishment. All values are below the mean. Most of the values are between the 25% and 50%. Only Fresh and Frozen are above 50%. This cluster is going to represent restaurants.</p>
 
 </div>
