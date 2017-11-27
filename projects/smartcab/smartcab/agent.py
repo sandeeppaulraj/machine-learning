@@ -45,8 +45,8 @@ class LearningAgent(Agent):
             self.epsilon = 0
             self.alpha = 0
         else:
-            self.epsilon -= 0.05
-            #self.epsilon = math.exp(-(self.a*self.t))
+            #self.epsilon -= 0.05
+            self.epsilon = math.exp(-(self.a*self.t))
             
 
         return None
@@ -74,9 +74,6 @@ class LearningAgent(Agent):
 
         #state = None        
         state = (waypoint, inputs['light'], inputs['left'], inputs['right'], inputs['oncoming'])
-        
-        #if self.learning:
-        #    self.createQ(state)
 
         return state
 
@@ -153,7 +150,7 @@ class LearningAgent(Agent):
         # When learning, implement the value iteration update rule
         #   Use only the learning rate 'alpha' (do not use the discount factor 'gamma')
         if self.learning:
-            self.Q[state][action] = (1-self.alpha)*self.Q[state][action] + self.alpha*reward
+            self.Q[state][action] = self.alpha*reward + (1-self.alpha)*self.Q[state][action]
 
         return
 
