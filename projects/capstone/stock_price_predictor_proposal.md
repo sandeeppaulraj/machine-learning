@@ -4,10 +4,12 @@ Sandeep Paulraj
 December 25th, 2017
 
 ## Proposal
-_(approx. 2-3 pages)_
+
+Proposal for stock price estimator.
+This proposal also has an associated ipython notebook stock_price_estimator_proposal.ipynb that has the initial data exploration and setup.
+
 
 ### Domain Background
-_(approx. 1-2 paragraphs)_
 
 Fundamentally, owning stocks is a way to grow wealth. Usually investors buy stocks after some due dilligence and research. If the stock price goes up, the investor has the option of selling the stocks and making a profit. At the same time, several companies shell out dividends to shareholders if they own stock. This too is a way to accumulate wealth. However, traditional buy and hold techniques are no longer in vogue these days. Retail investors find it very tough to enter a particular stock since stock prices do vary and large institutional investors hold sway. High Frequency trading results in significant stock price variation within a trading day. Also fundamental research though still very important is kind of taking a back seat to algorithm based trading.
 
@@ -16,9 +18,8 @@ Machine learning technques are being used to make investment decisions. Machine 
 To be precise, i would like to be able to predict Broadcom(AVGO) stock price. This company has been in the nwes lately for its takeover attempt of Qualcomm. Broadcom is also a very large Apple Supplier. Also owning Broadcom stock myself, i want to gauge if i can come up with a model to better gauge future price movement based on available data.
 
 ### Problem Statement
-_(approx. 1 paragraph)_
 
-Stock Prices fluctuate from day to day and to be precise, fluctuate by the second. 
+Stock Prices fluctuate from day to day and to be precise, fluctuate by the second. Using publicly available data stock price data, i will attempt to predict the adjusted close price of the stock for the next seven trading days. If we are able to gauge the clsoing stock price, we might be able to make smart trading decisions based on the predictions.
 
 ### Datasets and Inputs
 _(approx. 2-3 paragraphs)_
@@ -46,11 +47,3 @@ _(approx. 1 page)_
 In this final section, summarize a theoretical workflow for approaching a solution given the problem. Provide thorough discussion for what strategies you may consider employing, what analysis of the data might be required before being used, or which algorithms will be considered for your implementation. The workflow and discussion that you provide should align with the qualities of the previous sections. Additionally, you are encouraged to include small visualizations, pseudocode, or diagrams to aid in describing the project design, but it is not required. The discussion should clearly outline your intended workflow of the capstone project.
 
 -----------
-
-**Before submitting your proposal, ask yourself. . .**
-
-- Does the proposal you have written follow a well-organized structure similar to that of the project template?
-- Is each section (particularly **Solution Statement** and **Project Design**) written in a clear, concise and specific fashion? Are there any ambiguous terms or phrases that need clarification?
-- Would the intended audience of your project be able to understand your proposal?
-- Have you properly proofread your proposal to assure there are minimal grammatical and spelling mistakes?
-- Are all the resources used for this project correctly cited and referenced?
