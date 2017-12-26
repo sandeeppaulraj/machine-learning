@@ -8,6 +8,10 @@ December 25th, 2017
 Proposal for stock price estimator.
 This proposal also has an associated ipython notebook stock_price_estimator_proposal.ipynb that has the initial data exploration and setup.
 
+```sh
+stock_price_estimator_proposal.ipynb
+```
+
 
 ### Domain Background
 
@@ -59,7 +63,13 @@ Now the difference between actual and prediction prices can be positive or negat
 
 ### Project Design
 
+As mentioned previously my project proposal is associated with an ipython notebook.
 
+```sh
+stock_price_estimator_proposal.ipynb
+```
+
+The above notebook will be a starting point for my final project as well.
 
 
 -----------
