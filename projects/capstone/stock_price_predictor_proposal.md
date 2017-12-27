@@ -1,6 +1,8 @@
 # Machine Learning Engineer Nanodegree
 ## Capstone Proposal
+
 Sandeep Paulraj 
+
 December 25th, 2017
 
 ## Proposal
@@ -47,7 +49,7 @@ I will obtain Broadcom stock, Apple stock and SMH ETF price data from yahoo and 
 [VanEck Vectors Semiconductor ETF(SMH)](https://finance.yahoo.com/quote/SMH/history?p=SMH)
 
 Clicking on the above links will also show the data i will be leveraging. I intend to use 1 year worth of data. During analysis, if I find myself needing more data, it is simple to obtain more data from yahoo by getting 5 years worth of data.
-The individual pieces of information that i will leverge for each day will be "Open", "High", "Low", "Close", "Volume" and "Adjusted Close". 1 year worth of data will provide 252 data points. 5 years worth of data will result in approximately 1250 data points. The data range of the dataset will be between December 26, 2016 to December 26 2017.
+The individual pieces of information that i will leverage for each day will be "Open", "High", "Low", "Close", "Volume" and "Adjusted Close". 1 year worth of data will provide 252 data points. 5 years worth of data will result in approximately 1250 data points. The data range of the dataset will be between December 26, 2016 to December 26 2017.
 
 What i will attempt to predict is the adjusted stock price 1 day ahead.
 
@@ -98,11 +100,22 @@ The above notebook will be a starting point for my final project as well.
 
 Practically speaking a lot of factors go into a stock price. On any particular day, stock price will be somewhat based or related to the index that it is listed on. Then the index itself may and in all likelihood depend on the closing price of other indices. Let us take an example. Say the US has a good trading day and the markets are positive in Asia starting in Japan. All is well until say some bad data originates in Europe. Europe turns negative and this results in a negative start for US the next day. This feeds into a company stock price. Hence, depending on my intermediate trial runs, i will append my training data with data pertaining to Apple and SMH.
 
-After obtaining my data, I enhance my data with extra columns. Seven of these columns will be for the 7 following trading days stock price.  How I do this can be seen in the notebook. I explain various code cells in the notebook. I also have another column to store the difference between the highest and lowest daily stock price.
+After obtaining my data I intend to follow these steps.
 
-As mentioned previously, this is a regression problem. But there are a few salient featuers of this project that I have not previously dealt with previously. The project will have to predict 7 different values. Based on some reserach that i have done, I have a problem that is essentially a problem of multi output regression. Multi output regression can be used with any regressor using MultiOutputRegressor that is available in sklearn. To start, I will be using Linear Regression. I will gauge results after using Linear Regression with MultiOutputRegressor. However, it is very likely that i will be using Support Vector Regression as well. I may also experiment with Decision Tree Regressor and Random Forest Regressor. But it is important for the model to be simple so I don't want to end up with something fancy. Having done several udacity projects in both machine learning and self driving car, I have learned that simple is good and sometimes better.
+- Reverse the rows since as an example February 1 come before February2. We want it to be the other way round.
+- Append a column with trading price range (High - Close)
+- Add the following day's stock price. This will be waht we are trying to predict.
+- Depending on results of various models/scenarios I may and in all likelihood have to append data pertaining to Apple and SMH to the Broadcom data.
 
-After running regression scenarios, I will look at the metrics to gauge how well my model is doing and whether machine learning is a viable approach to predicting stock prices.
+I will be leveraging both pandas and numpy in my project.
 
+
+I will try Linear Regresssion and it is possible for a simple model to provide good results. However, I intend to try other regressors such as SVR(Support Vector Regression) along with  Decision Tree Regressor
+
+LTSM(Long Short term Memory) network is a type of Recurrent Neural Network. LTSM's have given good results with Time Series Prediction. Hence, i intend to try out LTMS for predicting stock prices in my project. PLease see video below.
+
+[LTSM Neural Network for Time Series Prediction](https://www.youtube.com/watch?v=2np77NOdnwk)
+
+After running various scenarios, I will look at the metrics to gauge how well each model is doing and gauge which is the best model to use for stock price prediction.
 
 -----------
