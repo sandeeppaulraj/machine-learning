@@ -24,7 +24,7 @@ To be precise, i would like to be able to predict Broadcom(AVGO) stock price. Th
 
 I will obtain Broadcom stock price data from yaho and the source is below.
 
-[Broadcom(AVGO) stock price] (https://finance.yahoo.com/quote/AVGO/history?p=AVGO)
+[Broadcom(AVGO) stock price]: (https://finance.yahoo.com/quote/AVGO/history?p=AVGO)
 
 ### Problem Statement
 
