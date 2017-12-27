@@ -22,6 +22,10 @@ Machine learning technques are being used to make investment decisions. Machine 
 
 To be precise, i would like to be able to predict Broadcom(AVGO) stock price. This company has been in the news lately for its takeover attempt of Qualcomm. Broadcom is also a very large Apple Supplier. Also owning Broadcom stock myself, i want to gauge if i can come up with a model to better gauge future price movement based on available data.
 
+I will obtain Broadcom stock price data from yaho and the source is below.
+
+[Broadcom(AVGO) stock price] (https://finance.yahoo.com/quote/AVGO/history?p=AVGO)
+
 ### Problem Statement
 
 Stock Prices fluctuate from day to day and to be precise, fluctuate by the second. Using publicly available data stock price data, i will attempt to predict the adjusted close price of the stock for the next seven trading days. If we are able to gauge the closing stock price, we might be able to make smart trading decisions based on the predictions. By giving a start date and a finite set of following trading days(in other words a range of trading days), it should be possible to predict the following 7 days adjusted closing stock price. Basically we have a range of trading days and we have to predict the closing adjusted stock prices of the 7 following days immediatley after this range.
