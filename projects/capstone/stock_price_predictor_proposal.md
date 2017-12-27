@@ -3,13 +3,13 @@
 
 Sandeep Paulraj 
 
-December 25th, 2017
+December 26th, 2017
 
 ## Proposal
 
 Proposal for stock price estimator.
 
-This proposal also has an associated ipython notebook stock_price_estimator_proposal.ipynb that has the initial data exploration and setup.
+This proposal also has an associated ipython notebook stock_price_estimator_proposal_v1.1.ipynb that has the initial data exploration and setup.
 
 ```sh
 stock_price_estimator_proposal _v1.1.ipynb
@@ -22,7 +22,7 @@ Fundamentally, owning stocks is a way to grow wealth. Usually investors buy stoc
 
 Machine learning technques are being used to make investment decisions. Machine learning techniques have carved out a niche for themselves in various domains and especially those domains where there is a plethora of data. Stock Prices are a very appealing domain since they provide several stocks and large amounts of data. Over the last few years we have also started hearing more about several hedge funds and investment banks beginning to use these techniques. I intend to investigate some of these techniques to predict stock prices.
 
-To be precise, i would like to be able to predict Broadcom(AVGO) stock price. This company has been in the news lately for its takeover attempt of Qualcomm. Broadcom is also a very large Apple Supplier. Also owning Broadcom stock myself, i want to gauge if i can come up with a model to better gauge future price movement based on available data. As part of this project, i also intend to investigate if Apple stock price movement has an effect on Broadcom stock price. The VanEck Vectors Semiconductor ETF(SMH) is essentially a basket of several semiconductor companies and I also intend to investigate if the sector has an effect  on Broadcom stock price. It is conceivable that an increase in volume of either AAPL stock or the SMH ETF has a positive correlation with Broadcom stock.
+To be precise, i would like to be able to predict Broadcom(AVGO) stock price. This company has been in the news lately for its takeover attempt of Qualcomm. Broadcom is also a very large Apple Supplier. Also owning Broadcom stock myself, i want to gauge if i can come up with a model to better gauge future price movement based on available data. As part of this project, i also intend to investigate if Apple stock price movement has an effect on Broadcom stock price. The VanEck Vectors Semiconductor ETF(SMH) is essentially a basket of several semiconductor companies and I also intend to investigate if the sector has an effect  on Broadcom stock price. It is conceivable that an increase in volume of either AAPL stock or the SMH ETF has a positive correlation with Broadcom stock price.
 
 In the Datasets and inputs section below, i show the source of the data and provide links.
 
@@ -64,7 +64,7 @@ It is important to use standard pandas routines to set up the dataframe. This es
 
 ### Solution Statement
 
-We are dealing with time series data. Also we fundamentally have a regression problem. This is not a classification problem. We have to predict an actual adjusted stock price; not whether the stock goes up or down. We have to predict seven outputs instead of one that I have been accustommed to do. So let us take an example. Say we need to predict the following trading day's closing stock price. We will have various inputs that are available to use such as trading volume, opening price, high price, low price. With this we can use regression techniques to predict the following day's closing stock price. Now, we have already setup our data to know the following day's closing stock price. Thus we will have both actual closing stock price and predicted stock price based on our model. With this we can gauge how well our model is behaving. It is intended that the model will predict stock price withing a +- 5% range. 
+We are dealing with time series data. Also we fundamentally have a regression problem. This is not a classification problem. We have to predict an actual adjusted stock price; not whether the stock goes up or down. We have to predict the next day's closing stock price. So let us take an example. Say we need to predict the following trading day's closing stock price. We will have various inputs that are available to use such as trading volume, opening price, high price, low price. With this we can use regression techniques to predict the following day's closing stock price. Now, we have already setup our data to know the following day's closing stock price. Thus we will have both actual closing stock price and predicted stock price based on our model. With this we can gauge how well our model is behaving. It is intended that the model will predict stock price withing a +- 5% range. 
 
 
 ### Benchmark Model
@@ -109,12 +109,16 @@ After obtaining my data I intend to follow these steps.
 
 I will be leveraging both pandas and numpy in my project.
 
+I will try Linear Regresssion and it is possible for a simple model to provide good results. However, I intend to try other regressors such as SVR(Support Vector Regression) along with  Decision Tree Regressor.
 
-I will try Linear Regresssion and it is possible for a simple model to provide good results. However, I intend to try other regressors such as SVR(Support Vector Regression) along with  Decision Tree Regressor
+As an example, some of the paramters I will be tuning is the kernel to be used along with Support Vector Regression.
+Some of the kernels that can be used are  ‘linear’, ‘poly’, ‘rbf' among others. The kernel co-efficient gamma can also be tuned.
 
-LTSM(Long Short term Memory) network is a type of Recurrent Neural Network. LTSM's have given good results with Time Series Prediction. Hence, i intend to try out LTMS for predicting stock prices in my project. PLease see video below.
+LTSM(Long Short term Memory) network is a type of Recurrent Neural Network. LTSM's have given good results with Time Series Prediction. Hence, I intend to try out LTSM for predicting stock prices in my project. Please see video below.
 
 [LTSM Neural Network for Time Series Prediction](https://www.youtube.com/watch?v=2np77NOdnwk)
+
+For LTSM, I will be using Keras. When I compile the keras model I will have the option to choose an appropriate loss function and optimizer. Again, since RMSE is not standard in keras as well, i will have to code it up myself.
 
 After running various scenarios, I will look at the metrics to gauge how well each model is doing and gauge which is the best model to use for stock price prediction.
 
