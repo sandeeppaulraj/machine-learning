@@ -22,9 +22,9 @@ Machine learning technques are being used to make investment decisions. Machine 
 
 To be precise, i would like to be able to predict Broadcom(AVGO) stock price. This company has been in the news lately for its takeover attempt of Qualcomm. Broadcom is also a very large Apple Supplier. Also owning Broadcom stock myself, i want to gauge if i can come up with a model to better gauge future price movement based on available data.
 
-I will obtain Broadcom stock price data from yaho and the source is below.
+I will obtain Broadcom stock price data from yahoo and the source is below.
 
-[Broadcom(AVGO) stock price]: (https://finance.yahoo.com/quote/AVGO/history?p=AVGO)
+[Broadcom(AVGO) stock price](https://finance.yahoo.com/quote/AVGO/history?p=AVGO)
 
 ### Problem Statement
 
