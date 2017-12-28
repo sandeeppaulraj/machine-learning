@@ -104,9 +104,9 @@ Practically speaking a lot of factors go into a stock price. On any particular d
 
 After obtaining my data I intend to follow these steps.
 
-- Reverse the rows since as an example February 1 come before February2. We want it to be the other way round. To 
+- Reverse the rows since as an example February 1 comes before February 2 in the downloaded data. I want it to be the other way round for analysis purposes. To clarify again, the reversal of the rows is just a matter of convenience while depicting the data. I prefer to see recent dates on the top.
 - Append a column with trading price range (High - Close)
-- Add the following day's stock price. This will be waht we are trying to predict.
+- Add the following day's stock price. This will be what we are trying to predict.
 - Depending on results of various models/scenarios I may and in all likelihood have to append data pertaining to Apple and SMH to the Broadcom data.
 
 I will be leveraging both pandas and numpy in my project.
