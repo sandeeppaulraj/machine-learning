@@ -64,6 +64,7 @@ It is important to use standard pandas routines to set up the dataframe. This es
 My capstone review provided me with two good sources of how to avoid lookahead bias. I am adding those links here.
 
 [9 Mistakes Quants Make](https://blog.quantopian.com/9-mistakes-quants-make-that-cause-backtests-to-lie-by-tucker-balch-ph-d/)
+
 [Avoiding Look Ahead Bias in Time Series Modelling](https://www.datasciencecentral.com/profiles/blogs/avoiding-look-ahead-bias-in-time-series-modelling-1)
 
 ### Solution Statement
@@ -121,9 +122,13 @@ Some of the kernels that can be used are  ‘linear’, ‘poly’, ‘rbf' amon
 My capstone proposal review provided me with very valuable feedback on Cross Validation with Time Series data. I am adding the links provided here.
 
 [Cross-validation for time series](https://robjhyndman.com/hyndsight/tscv/)
+
 [Pythonic Cross Validation on Time Series](http://francescopochetti.com/pythonic-cross-validation-time-series-pandas-scikit-learn/)
+
 [Using k-fold cross-validation for time-series model selection](https://stats.stackexchange.com/questions/14099/using-k-fold-cross-validation-for-time-series-model-selection)
+
 [sklearn time series split](http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html)
+
 [sklearn: User defined cross validation for time series data](https://stackoverflow.com/questions/33928131/sklearn-user-defined-cross-validation-for-time-series-data)
 
 LTSM(Long Short term Memory) network is a type of Recurrent Neural Network. LTSM's have given good results with Time Series Prediction. Hence, I intend to try out LTSM for predicting stock prices in my project. Please see video below.
