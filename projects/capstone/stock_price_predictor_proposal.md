@@ -3,7 +3,7 @@
 
 Sandeep Paulraj 
 
-December 26th, 2017
+December 27th, 2017
 
 ## Proposal
 
@@ -34,7 +34,7 @@ Some papers which discuss machine learning techniques are sited below.
 
 ### Problem Statement
 
-Stock Prices fluctuate from day to day and to be precise, fluctuate by the second. Using publicly available data stock price data, i will attempt to predict the adjusted close price of the stock for the next seven trading days. If we are able to gauge the closing stock price, we might be able to make smart trading decisions based on the predictions. By giving a start date and a finite set of following trading days(in other words a range of trading days), it should be possible to predict the following  days adjusted closing stock price. Basically we have a range of trading days and we have to predict the closing adjusted stock prices of the next day immediatley after this range. This is a regression problem and NOT a classification problem.
+Stock Prices fluctuate from day to day and to be precise, fluctuate by the second. Using publicly available data stock price data, i will attempt to predict the adjusted close price of the stock for the following trading day. If we are able to gauge the closing stock price, we might be able to make smart trading decisions based on the predictions. By giving a start date and a finite set of following trading days(in other words a range of trading days), it should be possible to predict the following  days adjusted closing stock price. Basically we have a range of trading days and we have to predict the closing adjusted stock prices of the next day immediatley after this range. This is a regression problem and NOT a classification problem.
 
 ### Datasets and Inputs
 
@@ -55,12 +55,16 @@ What i will attempt to predict is the adjusted stock price 1 day ahead.
 
 We are dealing with time series data and data has to be handled chronologically. Also the stock price data is continuous is nature.
 
-For the initial exploratory analysis, I read in the data and realize that the dates increase, i.e in the csv file and data frame February 1 will come before February 2. The first thing that needs to be done is to reverse this order.
+For the initial exploratory analysis, I read in the data and realize that the dates increase, i.e in the csv file and data frame February 1 will come before February 2. The first thing I do in my notebook and analysis is to reverse this order. I would like to explain the reversal of order: This is done so as to ease addition of an extra column of "following day's" adjusted closing price. I depict this in my data frame that can be seen in the ipython notebook. In a way while visualizing my data, I prefer to see the dataframe with recent date on top.
 
 In the associated ipython notebook I also have another column  where I store the difference between the highest and lowest daily stock price. This may prove to be useful in my analysis as this provides a daily trading range.
 
 It is important to use standard pandas routines to set up the dataframe. This essentially will result in a more elegant and cleaner final solution. Please take a look at the accompanying notebook to look at all the exploratory analysis
 
+My capstone review provided me with two good sources of how to avoid lookahead bias. I am adding those links here.
+
+[9 Mistakes Quants Make](https://blog.quantopian.com/9-mistakes-quants-make-that-cause-backtests-to-lie-by-tucker-balch-ph-d/)
+[Avoiding Look Ahead Bias in Time Series Modelling](https://www.datasciencecentral.com/profiles/blogs/avoiding-look-ahead-bias-in-time-series-modelling-1)
 
 ### Solution Statement
 
@@ -69,9 +73,7 @@ We are dealing with time series data. Also we fundamentally have a regression pr
 
 ### Benchmark Model
 
-As suggested in the capstone proposal review, i will train and test an out-of-the-box version of random forests on the project data. My final solution should outperform the random forests model. By using a random forest model as the benchmark, and training/testing it on exactly the same data as my final solution i will be able to make a clear, objective comparison between the two. Random Forest is a time series algorithm implemented in time series forecasting. Please see a citation below.
-
-[Stock Price Prediction using Random Forest](https://arxiv.org/pdf/1605.00003.pdf)
+As suggested in the capstone proposal review, I will train and test an out-of-the-box linear regression model on the project data. My final solution should outperform this linear regression model. By using a linear regression model as the benchmark, and training/testing it on exactly the same data as my final solution I will be able to make a clear, objective comparison between the two.
 
 ### Evaluation Metrics
 
@@ -102,17 +104,27 @@ Practically speaking a lot of factors go into a stock price. On any particular d
 
 After obtaining my data I intend to follow these steps.
 
-- Reverse the rows since as an example February 1 come before February2. We want it to be the other way round.
+- Reverse the rows since as an example February 1 come before February2. We want it to be the other way round. To 
 - Append a column with trading price range (High - Close)
 - Add the following day's stock price. This will be waht we are trying to predict.
 - Depending on results of various models/scenarios I may and in all likelihood have to append data pertaining to Apple and SMH to the Broadcom data.
 
 I will be leveraging both pandas and numpy in my project.
 
-I will try Linear Regresssion and it is possible for a simple model to provide good results. However, I intend to try other regressors such as SVR(Support Vector Regression) along with  Decision Tree Regressor.
+I will try Linear Regresssion and it is possible for a simple model to provide good results. However, I intend to try other regressors such as SVR(Support Vector Regression), Decision Tree Regressor and Random Forest. Random Forest is a time series algorithm implemented in time series forecasting. Please see a citation below.
+
+[Stock Price Prediction using Random Forest](https://arxiv.org/pdf/1605.00003.pdf)
 
 As an example, some of the paramters I will be tuning is the kernel to be used along with Support Vector Regression.
 Some of the kernels that can be used are  ‘linear’, ‘poly’, ‘rbf' among others. The kernel co-efficient gamma can also be tuned.
+
+My capstone proposal review provided me with very valuable feedback on Cross Validation with Time Series data. I am adding the links provided here.
+
+[Cross-validation for time series](https://robjhyndman.com/hyndsight/tscv/)
+[Pythonic Cross Validation on Time Series](http://francescopochetti.com/pythonic-cross-validation-time-series-pandas-scikit-learn/)
+[Using k-fold cross-validation for time-series model selection](https://stats.stackexchange.com/questions/14099/using-k-fold-cross-validation-for-time-series-model-selection)
+[sklearn time series split](http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html)
+[sklearn: User defined cross validation for time series data](https://stackoverflow.com/questions/33928131/sklearn-user-defined-cross-validation-for-time-series-data)
 
 LTSM(Long Short term Memory) network is a type of Recurrent Neural Network. LTSM's have given good results with Time Series Prediction. Hence, I intend to try out LTSM for predicting stock prices in my project. Please see video below.
 
