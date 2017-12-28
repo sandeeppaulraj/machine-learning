@@ -51,11 +51,11 @@ I will obtain Broadcom stock, Apple stock and SMH ETF price data from yahoo and 
 Clicking on the above links will also show the data i will be leveraging. I intend to use 1 year worth of data. During analysis, if I find myself needing more data, it is simple to obtain more data from yahoo by getting 5 years worth of data.
 The individual pieces of information that i will leverage for each day will be "Open", "High", "Low", "Close", "Volume" and "Adjusted Close". 1 year worth of data will provide 252 data points. 5 years worth of data will result in approximately 1250 data points. The data range of the dataset will be between December 26, 2016 to December 26 2017.
 
-What i will attempt to predict is the adjusted stock price 1 day ahead.
+What I will attempt to predict is the adjusted stock price 1 day ahead.
 
 We are dealing with time series data and data has to be handled chronologically. Also the stock price data is continuous is nature.
 
-For the initial exploratory analysis, I read in the data and realize that the dates increase, i.e in the csv file and data frame February 1 will come before February 2. The first thing I do in my notebook and analysis is to reverse this order. I would like to explain the reversal of order: This is done since while visualizing my data, I prefer to see the dataframe with the more recent date on top. I depict this in my data frame that can be seen in the ipython notebook.
+For the initial exploratory analysis, I read in the data and realize that the dates increase, i.e in the csv file and data frame February 1 will come before February 2. I reverse the order of the rows of data. I would like to explain the reversal of order: This is done since while visualizing my data, I prefer to see the dataframe with the more recent date on top. I depict this in my data frame that can be seen in the ipython notebook.
 
 In the associated ipython notebook I also have another column  where I store the difference between the highest and lowest daily stock price. This may prove to be useful in my analysis as this provides a daily trading range.
 
