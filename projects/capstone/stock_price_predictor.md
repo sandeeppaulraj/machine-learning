@@ -82,7 +82,7 @@ In the associated ipython notebook I also have another column  where I store the
 
 It is important to use standard pandas routines to set up the dataframe. This essentially will result in a more elegant and cleaner final solution. Please take a look at the accompanying notebook to look at all the exploratory analysis
 
-My capstone review provided me with two good sources of how to avoid lookahead bias. I am adding those links here.
+The following are two good sources of how to avoid lookahead bias. I am adding those links here.
 
 [9 Mistakes Quants Make](https://blog.quantopian.com/9-mistakes-quants-make-that-cause-backtests-to-lie-by-tucker-balch-ph-d/)
 
