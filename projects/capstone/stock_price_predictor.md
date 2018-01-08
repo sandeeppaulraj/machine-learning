@@ -1,18 +1,18 @@
 # Machine Learning Engineer Nanodegree
 ## Stock Price Predictor
 Sandeep Paulraj  
-January 7th, 2018
+January 8th, 2018
 
 ## I. Definition
 
 
 ### Project Overview
 
-Investing in stocks has been a way to grow wealth for a very long time. This has been done for well over a century and as more and more countries/societies are developing, each country has its own stocks markets where securities are listed and investors can invest there money. The fundamental reason why people invest in stocks is to participate in the company's growth. If the company grows and makes money, the stock price will rise. The investor might then get regular dividends and can also sell his/her shares and make a profit if the selling price is greater than the investment. Afcourse, it is also possible to lose money.
+Investing in stocks has been a way to grow wealth for a very long time. This has been done for well over a century and as more and more countries/societies are developing, each country has its own stock markets where securities are listed and investors can invest their money. The fundamental reason why people invest in stocks is to participate in a company's growth. If the company grows and makes money, the stock price will rise. The investor might then get regular dividends and can also sell his/her shares and make a profit if the selling price is greater than the investment. Afcourse, it is also possible to lose money.
 
 We live in an interconencted world with an over abundance of data and we can see a large numbers of fields and industries where machine learning is being used to make informed decisions. The stock market is also one such field/entity where there is a plethora of data and this data can be used to make buy/sell decisions. Machine learning algorithms are already being used by investment banks and hedge funds and these are getting more and more complex.
 
-In this project i will leverage publicly available historical stock price data from yahoo finance in my models.
+In this project I will leverage publicly available historical stock price data from yahoo finance in my models.
 
 Some papers which discuss machine learning techniques are sited below.
 
@@ -23,21 +23,19 @@ Some papers which discuss machine learning techniques are sited below.
 
 ### Problem Statement
 
-In this project, i will attempt to predict the next trading day's adjusted closing stock price for Broadcom. Broadcom is semiconductor company that is a major Apple supplier and has been very aggresively buying other companies to grow its portfolio. It is in the process of orchestarting a takeover of Qualcomm as well. I will attempt to use Broadcom stock data from yahoo finance in my model.
+In this project, I will attempt to predict the next trading day's adjusted closing stock price for Broadcom. Broadcom is semiconductor company that is a major Apple supplier and has been very aggresively buying other companies to grow its portfolio. It is in the process of orchestarting a takeover of Qualcomm as well. I will attempt to use Broadcom stock data from yahoo finance in my model.
 I will also attempt to gauge if Apple stock has an effect on the Broadcom stock price. Also, i will try to guage if the VanEck Vectors Semiconductor ETF has an effect on Broadcom.
 
-Initially while going through the capstone review process, i was attempting to predict the following seven trading day's Adjusted Closing stock price. However, review comments suggested that i should only try to predict the following trading day's Adjusted closing stock price. On thinking about this a little more, we have to be cognizant of the fact that there are several geopolitical uncertainties that exist in the market. Let us take an example: Let us say the US amrkets end a day strong; Japan and Asia start of strong but towards the end of the Asian trading day, there is some bad news on economic indictors or say there was a data breach. Asia may end up week and this will in all likelihood have an impact on European markets which then digest this information and actually have a bad day. Europe has a bad trading daya and markets end down. This sequence of events, results in the US markets starting of week. Thus, it is difficult to make informed judgments of stock prices seven trading days ahead. To think of it, if we are on a Friday evening trying to gauge the following seven trading days' closing sdjusted stock price; that is trying to go as far ahead as the next to next Tuesday, we have two weekends in between where a lot of events might happen. Based on this and my first capstone review, it was decided to predict only the next trading day's adjsuetd closing stock price.
+Initially while going through the capstone review process, I was attempting to predict the following seven trading day's Adjusted Closing stock price. However, capstone review comments suggested that I should only try to predict the following trading day's Adjusted closing stock price. On thinking about this a little more, we have to be cognizant of the fact that there are several geopolitical uncertainties that exist in the market. Let us take an example: Let us say the US amrkets end a day strong; Japan and Asia start of strong but towards the end of the Asian trading day, there is some bad news on economic indictors or say there was a data breach. Asia may end up weak and this will in all likelihood have an impact on European markets which then digest this information and actually have a bad day. Europe has a bad trading day and markets end down. This sequence of events, results in the US markets starting of week. Thus, it is difficult to make informed judgments of stock prices seven trading days ahead. To think of it, if we are on a Friday evening trying to gauge the following seven trading days' closing adjusted stock price; that is trying to go as far ahead as the next to next Tuesday, we have two weekends in between where a lot of events might happen. Based on this and my first capstone review, it was decided to predict only the next trading day's adjsuetd closing stock price.
 
 Why do i want to use Apple and SMH?
 
 - I decided to use Apple Data since Broadcom is a major Apple supplier
 - I decided to use SMH since it is a semiconductor ETF and broadcom is a semiconductor company.
 
-I will use various regression techniques in my various models and settle for the model that performs the best. Now is a good time to note that we are dealing with Time Series of data and will need special consideration. We cannot shuffle the data in any of our analysis. This actually is a good deviation from what i ahve learned in the Nanodegree since we didn't exactly learn how to deal with Time Series data. Different types of regressors will be required. In the end, it is anticipated that i will end up learning new models and techniques.
+I will use various regression techniques in my various models and settle for the model that performs the best. Now is a good time to note that we are dealing with Time Series of data and will need special consideration. We cannot shuffle the data in any of our analysis. This actually is a good deviation from what i have learned in the Nanodegree since we didn't exactly learn how to deal with Time Series data. Different types of regressors will be required. In the end, it is anticipated that I will end up learning new models and techniques.
 
-The strategy I will employ will be to setup a dataframe of Broadom stock price. Initially atleast, i will use all the data provided as my features. My prediction data will actually be the next trading days' adjusted clsoing stock price. This will need some amount of data manipulation since. I explain this in the section below. I will run various regression models to predict my "next trading days' adjusted clsoing stock price". My benchmark model will be a simple linear regression model and the final model should be better then this simple linear regression. 
-
-In this section, you will want to clearly define the problem that you are trying to solve, including the strategy (outline of tasks) you will use to achieve the desired solution. You should also thoroughly discuss what the intended solution will be for this problem. Questions to ask yourself when writing this section:
+The strategy I will employ will be to setup a dataframe of Broadcom stock price. Initially atleast, I will use all the data provided as my features. My prediction data will actually be the next trading days' adjusted closing stock price. This will need some amount of data manipulation since. I explain this in the section below. I will run various regression models to predict my "next trading days' adjusted closing stock price". My benchmark model will be a simple linear regression model and the final model should be better then this simple linear regression. This is however not guaranteed as sometimes simple models also provide good results.
 
 
 ### Metrics
@@ -315,33 +313,33 @@ In this section, your model’s final solution and its results should be compare
 
 ### Free-Form Visualization
 
-Given that I am not attmepting to use any other stock's data to predict the next day's closing adjusted stock price of Broadcom, it is conceivable that we can use the same featuers and use it for all other stocks. In this way we can perhaps do a stock screen. This however would take up a lot of time and processing power. I started of thinking that using SMH and Apple Data will enhance the Broadcom data and perhaps give a btter solution. This was however found not to be the case. This is surprising; however this is good in anothr way. This probably goes onto show that a very large component of my prediction is "baked" into the various features of the stock itslef. Lets us take 2 examples
+Given that I am not attmepting to use any other stock's data to predict the next day's closing adjusted stock price of Broadcom, it is conceivable that we can use the same featuers and use it for all other stocks. In this way we can perhaps do a stock screen. This however would take up a lot of time and processing power. I started off, thinking that using SMH and Apple Data will enhance the Broadcom data and perhaps give a btter solution. This was however found not to be the case. This is surprising; however this is good in anothr way. This probably goes onto show that a very large component of my prediction is "baked" into the various features of the stock itself. Lets us take 2 examples
 
-- Let us say there is a good report about Apple selling more iphones than predicted. This will lead to increased volume/incresed stock price of apple. Based on market dynamics, investors trying to diversify may choose to buy Broadcom since it supplies various companies. So Broadcom will aslo see buying interset and increased volume may lead to increased stock price. Thus there is no need to depend on Apple Data
+- Let us say there is a good report about Apple selling more iphones than predicted. This will lead to increased volume/incresed stock price of apple. Based on market dynamics, investors trying to diversify may choose to buy Broadcom since it supplies various companies. So Broadcom will aslo see buying interset and increased volume may lead to increased stock price. Thus there is no need to depend on Apple Data.
 
-- Let us say there is a "sector rotation" and investors want to move out semiconductors stock. The whole sector maybe down. Negative sentiment from the sector will translate to selling pressure on semiconductor stocks including Broadcom. Thus there may be a case to not need SMH data for Broadcom analysis.
+- Let us say there is a "sector rotation" and investors want to move out of semiconductors stock. The whole sector maybe down. Negative sentiment from the sector will translate to selling pressure on semiconductor stocks including Broadcom. Thus there may be a case to not need SMH data for Broadcom analysis.
 
-These 2 show that it is possible to make predictions on a certain stock by simple concentrating on data pertainig to that stock itself. This is clearly shown by the RMSE which did not improve when i appended Broadcom data with Apple and SMH.
+These 2 show that it is possible to make predictions on a certain stock by simple concentrating on data pertainig to that stock itself. This is clearly shown by the RMSE which did not improve when I appended Broadcom data with Apple and SMH.
 
 
 ### Reflection
 
 The most important aspect of this project was that I was essentially dealing with time series of data. This type of problem is something that I have not dealt with previously. This means that we cannot do any random shuffling of the data since the ensuing data point depends on the order of the previous data points. The order had to be maintained. I had to figure out how to use the sklearn TimeSeriesSplit which is a time series cross validator. The example provided in the sklearn documentation is helpful but rudimentary. To have this succesfully inegrated into my models was something that I had to spend a lot of time on. Afcourse, once it is integrated into the "code flow", it is easy to use this in all the various different models.
 
-The other important aspect of this project was using various different types of regressors. The project was essentially a regression problem and not a classification problem. I had to understand and use regressors that I was not previously exposed to. It took me a finite amount of time to use Grid Serach CV along with these new regressors, time series split and a dictionary of parmaters to try in my models. In the end , i ended up leanring several new techniques and models. In hindsight, choosing stock price predition as my capstone was a good decision since i ended up learning several new things.
+The other important aspect of this project was using various different types of regressors. The project was essentially a regression problem and not a classification problem. I had to understand and use regressors that I was not previously exposed to. It took me a finite amount of time to use Grid Serach CV along with these new regressors, time series split and a dictionary of parmaters to try in my models. In the end , I ended up learning several new techniques and models. In hindsight, choosing stock price predition as my capstone was a good decision since I ended up learning several new things.
 
-The final model and solution does fit my expectation. With the improvements I mention below it can be used in a general setting to solve these types of problems.
+The final model and solution does fit my expectation to some extent. I would have liked to be able to make even better predictions. With the improvements I mention below it can be used in a general setting to solve these types of problems.
 
 
 ### Improvement
 
 I would have liked to do the following in my project.
 
-- Allow the user the flexibility to select a certain stock and do the analysis presented in the project notebook on the stock. There is one immediate concern that comes to my mind. Since Broadcom is a semiconductor company and is a big Apple supplier, i decided to use Apple stock and the SMH ETF data for my analysis. These 2 will not be applicable to lets say Southwest Airlines. I will also need to code up more general user defined functions that can take a stock symbol and dataframe and perform all the necessary analysis.
+- Allow the user the flexibility to select a certain stock and do the analysis presented in the project notebook on the stock. There is one immediate concern that comes to my mind. Since Broadcom is a semiconductor company and is a big Apple supplier, i decided to use Apple stock and the SMH ETF data for my analysis. On further analysis these were found not to be necessary. However for Southwest Airlines, Oil industry data might be useful. I will also need to code up more general user defined functions that can take a stock symbol and dataframe and perform all the necessary analysis.
 
-- I would loved to have used neural networks and try out LTSM. The mian reason for not doing so is becuase I am not yet fully aware of LTSM and i didn't want to use something that i didn't ahve a good grasp of. If I had a good grasp of LTSM, i would defintely have tried using it in my project. LTSM should give good results for time series data. I intedn to try this out at a later date as time permits.
+- I would loved to have used neural networks and try out LTSM. The main reason for not doing so is becuase I am not yet fully aware of LTSM and i didn't want to use something that i didn't have a good grasp of. If I had a good grasp of LTSM, i would defintely have tried using it in my project. LTSM should give good results for time series data. I intend to try this out at a later date as time permits.
 
-- Machine learning for stock trading and prediction is getting more and more complicated and fancy. I see sentiment analysis using tweet dat also being used. I think a better solution will defintely exist if we set up or analysis using more enhanced data points with data from tweets and using perhaps LTSM. Thus if my final solution were used as the new benchmark, i do believe an even better solution exists.
+- Machine learning for stock trading and prediction is getting more and more complicated and fancy. I see sentiment analysis using tweet data also being used. I think a better solution will defintely exist if we set up our analysis using more enhanced data points with data from tweets and using perhaps LTSM. Thus if my final solution were used as the new benchmark, I do believe an even better solution exists.
 
 -----------
 
