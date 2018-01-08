@@ -61,7 +61,7 @@ All the analysis and code cna be seen at
 stock_price_estimator.ipynb
 ```
 
-It is possible to obtain stock price financial data from various sources. It is also possible to use python api and the yahoo finance library to obtain this data. For some reason, i am having trouble installing the yahoo finance library in python 3.6. So I have decided, to obtain the csv data from the yahoo finance website and read in the dataframe using pandas.
+It is possible to obtain stock price financial data from various sources. It is also possible to use python api and the yahoo finance library to obtain this data. For some reason, I am having trouble installing the yahoo finance library in python 3.6. So I have decided, to obtain the csv data from the yahoo finance website and read in the dataframe using pandas.
 
 I will obtain Broadcom stock, Apple stock and SMH ETF price data from yahoo and the source is below.
 
@@ -71,7 +71,7 @@ I will obtain Broadcom stock, Apple stock and SMH ETF price data from yahoo and 
 
 [VanEck Vectors Semiconductor ETF(SMH)](https://finance.yahoo.com/quote/SMH/history?p=SMH)
 
-Clicking on the above links will also show the data I will be leveraging. I initially intended to use 1 years worth of data but it became obvious that this was nearly not enough data. Infact, i would argue that even 5 years worth of dats is not enough. However, my hands are tied here; i can't go back any further since Broadcom(AVGO) has changed massively over the last several years acquired companies to grow its EPS. Beyond 5 years, it was literally a totally different company. In a way that makes this analysis a little unique in my opinion. We have to make do with 5 years worth of historical data. 
+Clicking on the above links will also show the data I will be leveraging. I initially intended to use 1 years worth of data but it became obvious that this was nearly not enough data. Infact, I would argue that even 5 years worth of dats is not enough. However, my hands are tied here; I can't go back any further since Broadcom(AVGO) has changed massively over the last several years acquiring companies to grow its EPS. Beyond 5 years, it was literally a totally different company. In a way that makes this analysis a little unique in my opinion. We have to make do with 5 years worth of historical data. 
 
 The individual pieces of information that I will leverage for each day will be "Open", "High", "Low", "Close", "Volume" and "Adjusted Close". 1 year worth of data will provide approximately 250 data points. 5 years worth of data will result in approximately 1250 data points. The data range of the dataset will be between January 07, 2013 to January 05 2018.
 
@@ -79,11 +79,11 @@ What I will attempt to predict is the adjusted stock price 1 day ahead.
 
 We are dealing with time series data and data has to be handled chronologically. Also the stock price data is continuous is nature. So essentially we will have 5 years worth of data to predict the next trading day's closing stock price.
 
-For the initial exploratory analysis, I read in the data and realize that the dates increase, i.e in the csv file and data frame February 1 will come before February 2. I reverse the order of the rows of data. I would like to explain the reversal of order: This is done since while visualizing my data, I prefer to see the dataframe with the more recent date on top. I depict this in my data frame that can be seen in the ipython notebook.Another reason for doing this is becuase when we plot some graphs the most recent dates will be on the right
+For the initial exploratory analysis, I read in the data and realize that the dates increase, i.e in the csv file and data frame February 1 will come before February 2. I reverse the order of the rows of data. I would like to explain the reversal of order: This is done since while visualizing my data, I prefer to see the dataframe with the more recent date on top. I depict this in my data frame that can be seen in the ipython notebook.Another reason for doing this is becuase when we plot some graphs the most recent dates will be on the right.
 
 In the associated ipython notebook I also have another column  where I store the difference between the highest and lowest daily stock price. This may prove to be useful in my analysis as this provides a daily trading range.
 
-It is important to use standard pandas routines to set up the dataframe. This essentially will result in a more elegant and cleaner final solution. Please take a look at the accompanying notebook to look at all the exploratory analysis
+It is important to use standard pandas routines to set up the dataframe. This essentially will result in a more elegant and cleaner final solution. Please take a look at the accompanying notebook to look at all the exploratory analysis.
 
 The following are two good sources of how to avoid lookahead bias. I am adding those links here.
 
@@ -91,18 +91,18 @@ The following are two good sources of how to avoid lookahead bias. I am adding t
 
 [Avoiding Look Ahead Bias in Time Series Modelling](https://www.datasciencecentral.com/profiles/blogs/avoiding-look-ahead-bias-in-time-series-modelling-1)
 
-The associated ipython notebook clearly depicts all the data that has been setup and used for the analysis. I also provide summary staticts for the the dataset as well.
+The associated ipython notebook clearly depicts all the data that has been setup and used for the analysis. I also provide summary statistics for the the dataset as well.
 
 
 ### Exploratory Visualization
 
-In the ipython notebook i have 4 different plots related to Broadcom stock price data. Since the stock has been in the news lately for its takeover attempt of Broadcom and also due to continually beating result estimates, i decided to plot daily volume for the last 5 years. Clearly we can see spikes associated with important news and results.
+In the ipython notebook I have 4 different plots related to Broadcom stock price data. Since the stock has been in the news lately for its takeover attempt of Broadcom and also due to continually beating result estimates, I decided to plot daily volume for the last 5 years. Clearly we can see spikes associated with important news and results.
 
-In another plot, i also depict the intradya "High - Low" stock price and this too has shown a lot of unusual spikes lately due to a variety of reasons.
+In another plot, I also depict the intraday "High - Low" stock price and this too has shown a lot of unusual spikes lately due to a variety of reasons that I mention below.
 
 - A news conference with President Trump to announce moving back headquarters to the United States.
 - Closing the Acquisition of Brocade
-- Announcing the Acquisition of Qulacomm.
+- Announcing the Acquisition of Qualcomm.
 
 In general, we can see that these have resulted in pushing up the stock price higher.
 However, this also gives a clue that it may be prudent not to use all the features of the input dataset. For example, we need to answer and be cognizant of the following
@@ -129,13 +129,13 @@ We also need to do cross validation. The links provide a good reference for time
 
 [sklearn: User defined cross validation for time series data](https://stackoverflow.com/questions/33928131/sklearn-user-defined-cross-validation-for-time-series-data)
 
-As mentioned previously in this writeup, we are fundamentally dealing with a regression problem and not a classification problem. Hence this project is unique in that i have not had to deal with the time series regression before so it is a good learning experience.
+As mentioned previously in this writeup, we are fundamentally dealing with a regression problem and not a classification problem. Hence this project is unique in that I have not had to deal with the time series regression before so it is a good learning experience.
 
 I will try Linear Regresssion and it is possible for a simple model to provide good results. However, I intend to try other regressors such as SVR(Support Vector Regression), Decision Tree Regressor and Random Forest. Random Forest is a time series algorithm implemented in time series forecasting. Please see a citation below.
 
 [Stock Price Prediction using Random Forest](https://arxiv.org/pdf/1605.00003.pdf)
 
-Other citations and refernces for the other regressors i intend to try in the project.
+Other citations and references for the other regressors I intend to try in the project.
 
 [Decision Tree Regressor](http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html)
 
@@ -145,15 +145,15 @@ Other citations and refernces for the other regressors i intend to try in the pr
 
 I will be trying the various regressors mentioend above along with GridSearchCV. It is at this stage that i will setup a dictionary of parameters from which to try out various options.
 
-My prediction data will be the "next trading day's adjusted closing stock price".
-Initially atleast i intend to use all the featuers present in the data set downloaded from yahoo finance.
+My prediction data will be the **next trading day's adjusted closing stock price**.
+Initially atleast I intend to use all the featuers present in the data set downloaded from yahoo finance.
 
 
 ### Benchmark
 
 As suggested in the capstone proposal review, I will train and test an out-of-the-box linear regression model on the project data. My final solution should outperform this linear regression model. By using a linear regression model as the benchmark, and training/testing it on exactly the same data as my final solution I will be able to make a clear, objective comparison between the two.
 
-Using the RMSE metric i found out that that for the Benchmark Linear model the RMSE was 1.79.
+Using the RMSE metric I found out that that for the Benchmark Linear model the RMSE was 1.79.
 This can also be seen in the ipython notebook.
 
 **Root Mean squared error: 1.79**
@@ -172,16 +172,16 @@ After obtaining my data I intend to follow these steps.
 - Depending on results of various models/scenarios I may and in all likelihood have to append data pertaining to Apple and SMH to the Broadcom data.
 
 I have to mention that the data obtainted from yahoo was clean and did not contain any "NaN".
-In a way this is on expected lines. The ticker symbols i am dealing with are well known and the various features such as "Open", "Close", "Volume" have no reason to be missing.
+In a way this is on expected lines. The ticker symbols I am dealing with are well known and the various features such as "Open", "Close", "Volume" have no reason to be missing.
 
-As can be seen in the notebook, there is some amount of work involved to obtain the next tarding day's adjusted closing stock price and concat this to the Broadcom data. However, there are well known routines such as **concat** to aid in this. Infact **concat** is used agin to append Apple and SMH closing adjusted stock price to the Broadcom data.
+As can be seen in the notebook, there is some amount of work involved to obtain the next trading day's adjusted closing stock price and concat this to the Broadcom data. However, there are well known routines such as **concat** to aid in this. Infact **concat** is used agin to append Apple and SMH closing adjusted stock price to the Broadcom data.
 
 Since the stock volume data has a very high unit, i thought it would be necessary to do some preprocessing on this. However, it did not have nay effect on the model analysis so i didn't do any preprocessing. 
 
 
 ### Implementation
 
-So the first thing to attempt is to successfully use the various regressors such random forest regressor, decision tree regressors and svr. I did not use time series cross validation initially. This is becuase i had never previously used these regressors and i did not know how to integrate the time series cross validator.
+So the first thing to attempt is to successfully use the various regressors such random forest regressor, decision tree regressors and svr. I did not use time series cross validation initially. This is becuase I had never previously used these regressors and i did not know how to integrate the time series cross validator.
 
 Immediatley with the initial data without appending Apple and SMH data, I could see that among the various regressors the Random Forest Regressor was giving the best results by checking the RMSE metric.
 
@@ -192,7 +192,7 @@ tscv = TimeSeriesSplit(n_splits = 10)
 tscv.split(X_train,y_train)
 ```
 
-I use the sklearn **TimeSeriesSplit** with a splits parameter of 10 and this becomes my time series cross validator, tscv. My next step is to choose a regressor. I chose the **DecisionTreeRegressor** and the **RandomForestRegressor**. I did not use SVR since in the pervious step I did not get good results with SVR. Also I began to notice that training was taking a very long time with SVR so i dropped it for further analysis. I used **GridSearchCV** with the 2 mentioned regressors and I see an improvement in the results for Random Forest Regressor. This also happend to be the first time I have successfully integrated time series cross validation, regression and grid search cv in my project workflow.
+I use the sklearn **TimeSeriesSplit** with a splits parameter of 10 and this becomes my time series cross validator, tscv. My next step is to choose a regressor. I chose the **DecisionTreeRegressor** and the **RandomForestRegressor**. I did not use SVR since in the previous step I did not get good results with SVR. Also I began to notice that training was taking a very long time with SVR so i dropped it for further analysis. I used **GridSearchCV** with the 2 mentioned regressors and I see an improvement in the results for Random Forest Regressor. This also happend to be the first time I have successfully integrated time series cross validation, regression and grid search cv in my project workflow.
 
 The RandomForestRegressor gave good results with an RMSE of **1.01**
 
@@ -233,7 +233,7 @@ avgo_enhanced = pd.concat([avgo,aapl,smh], axis = 1, join='inner')
 ```
 
 I tried various combinations by adding/removing features from the training data.
-After much experimentation i found that the best features to leverage to predict the next trading day's adjusted closing stock price were **'Open','Volume','Adj Close' and 'High'**
+After much experimentation I found that the best features to leverage to predict the next trading day's adjusted closing stock price were **'Open','Volume','Adj Close' and 'High'**
 
 I also have training data called **X_with_aapl_smh** with the features **'Open','Volume','Adj Close', 'High', 'Low', 'SMH Adj Close' and 'AAPL Adj Close'**. 
 
@@ -248,7 +248,7 @@ My prediction values are below.
 y = avgo_enhanced['Day 1'].values
 ```
 
-At this stage i proceed to try and find an optimal solution. I try out various regressors. I had earlier dropped SVR but at this stage i decided to try **KNeighborsRegressor** and **KNeighborsRegressor**. Both these 2 gave poor results so I decided that I was not going to use them any more. I decided to stick with the random forest and decision tree regressor.
+At this stage I proceed to try and find an optimal solution. I try out various regressors. I had earlier dropped SVR but at this stage I decided to try **KNeighborsRegressor** and **KNeighborsRegressor**. Both these 2 gave poor results so I decided that I was not going to use them any more. I decided to stick with the random forest and decision tree regressor.
 
 The **DecisionTreeRegressor** regressor gave me an RMSE of **4.68**.
 
@@ -282,8 +282,6 @@ def rfr(X, y):
 
 With this my RMSE reduced to **0.61**
 
-In this section, you will need to discuss the process of improvement you made upon the algorithms and techniques you used in your implementation. For example, adjusting parameters for certain models to acquire improved solutions would fall under the refinement category. Your initial and final solutions should be reported, as well as any significant intermediate results as necessary. Questions to ask yourself when writing this section:
-
 I also tried the same model with the training data **X_with_aapl_smh** that I mentioned above.
 
 The results were worse with an RMSE of **3.11**. This clearly shows that we don't need to use Apple and SMH in our models. 
@@ -294,11 +292,39 @@ The results were worse with an RMSE of **3.11**. This clearly shows that we don'
 
 ### Model Evaluation and Validation
 
-In this section, the final model and any supporting qualities should be evaluated in detail. It should be clear how the final model was derived and why this model was chosen. In addition, some type of analysis should be used to validate the robustness of this model and its solution, such as manipulating the input data or environment to see how the model’s solution is affected (this is called sensitivity analysis). Questions to ask yourself when writing this section:
-- _Is the final model reasonable and aligning with solution expectations? Are the final parameters of the model appropriate?_
-- _Has the final model been tested with various inputs to evaluate whether the model generalizes well to unseen data?_
-- _Is the model robust enough for the problem? Do small perturbations (changes) in training data or the input space greatly affect the results?_
-- _Can results found from the model be trusted?_
+If we were predicting an entire index then maybe we could have leveraged decades worth of data. This is fine if we are trying to predict an index such as Dow Jones, FTSE 100, German DAX. However, with Broadcom stock I decided to make do with 5 years worth of data. I mentioned previously in this writeup as to why I chose to do so. The original company Avago(AVGO) has been buying up companies to grow their EPS and finally bought Broadcom and took it company name but kept the stock ticker as AVGO. Before 5 years it was a totally different company.
+
+While experimenting with the data, it became clear that the time series cross validators need data and thus is decided to keep 1248 points for training and validation. Thus I had a remaining 10 points for testing my model. This is low but I feel this is a compromise since the training/validation phase needs a lot of data.
+
+Here are some results.
+
+The Benchmark Linear Regression Model had an RMSE of **1.79**
+
+A simple Decision Tree Regressor without time series split had an RMSE of **7.43**
+
+A simple Random Forest Regressor without time series split had an RMSE of **1.86**
+
+Using Time Series Split and Grid Search CV the Decision Tree Regressor had an RMSE of **2.49**
+
+Using Time Series Split and Grid Search CV the Random Forest Regressor had an RMSE of **1.01**
+
+After this in my final updates, i added Apple and SMH data.
+
+With Apple and SMH data using Random Forest Regressor the RMSE was **3.11**
+
+Without Apple and SMH data and dropping the "Low" stock price of the day the RMSE was **0.61**
+
+This happens to be my final model.
+
+The features that i used in this are specific only to Broadcom stock itself and are **'Open','Volume','Adj Close' and  'High'**
+
+An RMSE of 0.61 is good and means that we can predict with 60 cents of the next day's stock price.
+This is an improvement on the Benchamrk model.
+
+We cannot shuffle the data since we are dealing with time series data which have a chronological dependence.
+
+The results found from the model can be trusted because for all but the first data point we have the original **next trading day's closing adjusted stock price**. We can easily compare the actual and predicted. However, i would have liked to predict within a few cents instead of around 60 cents.
+It is entirely possible that this model is susceptible to noise and perturbations. Let me explain this; the last 20 odd training days have been interesting for Broadcom, it is involved in a proxy fight with Qualcomm, then there are concerns over Iphone shipments, then there seems to be a sector rotation in stocks from tech to Financials so the model may be susceptible to events.
 
 ### Justification
 
