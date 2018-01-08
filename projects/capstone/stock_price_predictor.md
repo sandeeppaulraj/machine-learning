@@ -162,7 +162,7 @@ This can also be seen in the ipython notebook.
 
 
 ## III. Methodology
-_(approx. 3-5 pages)_
+
 
 ### Data Preprocessing
 
@@ -183,7 +183,7 @@ Since the stock volume data has a very high unit, i thought it would be necessar
 
 ### Implementation
 
-So the first thing to attempt is to successfully use the various regressors such random forest regressor, decision tree regressors and svr. I did not use time series cross validation initially. This is becuase i had never previosuly used these regressors and i did not know how to integrate the time series cross validator.
+So the first thing to attempt is to successfully use the various regressors such random forest regressor, decision tree regressors and svr. I did not use time series cross validation initially. This is becuase i had never previously used these regressors and i did not know how to integrate the time series cross validator.
 
 Immediatley with the initial data without appending Apple and SMH data, I could see that among the various regressors the Random Forest Regressor was giving the best results by checking the RMSE metric.
 
@@ -228,7 +228,7 @@ grid.best_estimator_
 
 ### Refinement
 
-Now, i proceed to add Apple and SMH data to my feature set. I do this in the following way mentioned below.
+Now, I proceed to add Apple and SMH data to my feature set. I do this in the following way mentioned below.
 
 ```sh
 avgo_enhanced = pd.concat([avgo,aapl,smh], axis = 1, join='inner')
@@ -285,15 +285,17 @@ def rfr(X, y):
 With this my RMSE reduced to **0.61**
 
 In this section, you will need to discuss the process of improvement you made upon the algorithms and techniques you used in your implementation. For example, adjusting parameters for certain models to acquire improved solutions would fall under the refinement category. Your initial and final solutions should be reported, as well as any significant intermediate results as necessary. Questions to ask yourself when writing this section:
-- _Has an initial solution been found and clearly reported?_
-- _Is the process of improvement clearly documented, such as what techniques were used?_
-- _Are intermediate and final solutions clearly reported as the process is improved?_
+
+I also tried the same model with the training data **X_with_aapl_smh** that I mentioned above.
+
+The results were worse with an RMSE of **3.11**. This clearly shows that we don't need to use Apple and SMH in our models. 
 
 
 ## IV. Results
-_(approx. 2-3 pages)_
+
 
 ### Model Evaluation and Validation
+
 In this section, the final model and any supporting qualities should be evaluated in detail. It should be clear how the final model was derived and why this model was chosen. In addition, some type of analysis should be used to validate the robustness of this model and its solution, such as manipulating the input data or environment to see how the model’s solution is affected (this is called sensitivity analysis). Questions to ask yourself when writing this section:
 - _Is the final model reasonable and aligning with solution expectations? Are the final parameters of the model appropriate?_
 - _Has the final model been tested with various inputs to evaluate whether the model generalizes well to unseen data?_
@@ -301,6 +303,7 @@ In this section, the final model and any supporting qualities should be evaluate
 - _Can results found from the model be trusted?_
 
 ### Justification
+
 In this section, your model’s final solution and its results should be compared to the benchmark you established earlier in the project using some type of statistical analysis. You should also justify whether these results and the solution are significant enough to have solved the problem posed in the project. Questions to ask yourself when writing this section:
 - _Are the final results found stronger than the benchmark result reported earlier?_
 - _Have you thoroughly analyzed and discussed the final solution?_
