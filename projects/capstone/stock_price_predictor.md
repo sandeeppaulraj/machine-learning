@@ -58,6 +58,11 @@ _(approx. 2-4 pages)_
 
 ### Data Exploration
 
+All the analysis and code cna be seen at 
+```sh
+stock_price_estimator.ipynb
+```
+
 It is possible to obtain stock price financial data from various sources. It is also possible to use python api and the yahoo finance library to obtain this data. For some reason, i am having trouble installing the yahoo finance library in python 3.6. So I have decided, to obtain the csv data from the yahoo finance website and read in the dataframe using pandas.
 
 I will obtain Broadcom stock, Apple stock and SMH ETF price data from yahoo and the source is below.
@@ -76,7 +81,7 @@ What I will attempt to predict is the adjusted stock price 1 day ahead.
 
 We are dealing with time series data and data has to be handled chronologically. Also the stock price data is continuous is nature. So essentially we will have 5 years worth of data to predict the next trading day's closing stock price.
 
-For the initial exploratory analysis, I read in the data and realize that the dates increase, i.e in the csv file and data frame February 1 will come before February 2. I reverse the order of the rows of data. I would like to explain the reversal of order: This is done since while visualizing my data, I prefer to see the dataframe with the more recent date on top. I depict this in my data frame that can be seen in the ipython notebook.
+For the initial exploratory analysis, I read in the data and realize that the dates increase, i.e in the csv file and data frame February 1 will come before February 2. I reverse the order of the rows of data. I would like to explain the reversal of order: This is done since while visualizing my data, I prefer to see the dataframe with the more recent date on top. I depict this in my data frame that can be seen in the ipython notebook.Another reason for doing this is becuase when we plot some graphs the most recent dates will be on the right
 
 In the associated ipython notebook I also have another column  where I store the difference between the highest and lowest daily stock price. This may prove to be useful in my analysis as this provides a daily trading range.
 
@@ -88,19 +93,28 @@ The following are two good sources of how to avoid lookahead bias. I am adding t
 
 [Avoiding Look Ahead Bias in Time Series Modelling](https://www.datasciencecentral.com/profiles/blogs/avoiding-look-ahead-bias-in-time-series-modelling-1)
 
+The associated ipython notebook clearly depicts all the data that has been setup and used for the analysis. I also provide summary staticts for the the dataset as well.
 
-In this section, you will be expected to analyze the data you are using for the problem. This data can either be in the form of a dataset (or datasets), input data (or input files), or even an environment. The type of data should be thoroughly described and, if possible, have basic statistics and information presented (such as discussion of input features or defining characteristics about the input or environment). Any abnormalities or interesting qualities about the data that may need to be addressed have been identified (such as features that need to be transformed or the possibility of outliers). Questions to ask yourself when writing this section:
-- _If a dataset is present for this problem, have you thoroughly discussed certain features about the dataset? Has a data sample been provided to the reader?_
-- _If a dataset is present for this problem, are statistics about the dataset calculated and reported? Have any relevant results from this calculation been discussed?_
-- _If a dataset is **not** present for this problem, has discussion been made about the input space or input data for your problem?_
-- _Are there any abnormalities or characteristics about the input space or dataset that need to be addressed? (categorical variables, missing values, outliers, etc.)_
 
 ### Exploratory Visualization
 
-In this section, you will need to provide some form of visualization that summarizes or extracts a relevant characteristic or feature about the data. The visualization should adequately support the data being used. Discuss why this visualization was chosen and how it is relevant. Questions to ask yourself when writing this section:
-- _Have you visualized a relevant characteristic or feature about the dataset or input data?_
-- _Is the visualization thoroughly analyzed and discussed?_
-- _If a plot is provided, are the axes, title, and datum clearly defined?_
+In the ipython notebook i have 4 different plots related to Broadcom stock price data. Since the stock has been in the news lately for its takeover attempt of Broadcom and also due to continually beating result estimates, i decided to plot daily volume for the last 5 years. Clearly we can see spikes associated with important news and results.
+
+In another plot, i also depict the intradya "High - Low" stock price and this too has shown a lot of unusual spikes lately due to a variety of reasons.
+
+- A news conference with President Trump to announce moving back headquarters to the United States.
+- Closing the Acquisition of Brocade
+- Announcing the Acquisition of Qulacomm.
+
+In general, we can see that these have resulted in pushing up the stock price higher.
+However, this also gives a clue that it may be prudent not to use all the features of the input dataset. For example, we need to answer and be cognizant of the following
+
+- If we take volume into consideration, do we need High stock price and Low stock price
+- Do we need the delta(High - Low) Stock price in our analysis
+- Do we need to augment Broadcom data with that of Apple and SMH
+
+My analysis will try to answers these questions.
+
 
 ### Algorithms and Techniques
 
@@ -113,10 +127,10 @@ In this section, you will need to discuss the algorithms and techniques you inte
 
 As suggested in the capstone proposal review, I will train and test an out-of-the-box linear regression model on the project data. My final solution should outperform this linear regression model. By using a linear regression model as the benchmark, and training/testing it on exactly the same data as my final solution I will be able to make a clear, objective comparison between the two.
 
+Using the RMSE metric i found out that that for the Benchmark Linear model the RMSE was 1.79.
+This can also be seen in the ipython notebook.
 
-In this section, you will need to provide a clearly defined benchmark result or threshold for comparing across performances obtained by your solution. The reasoning behind the benchmark (in the case where it is not an established result) should be discussed. Questions to ask yourself when writing this section:
-- _Has some result or value been provided that acts as a benchmark for measuring performance?_
-- _Is it clear how this result or value was obtained (whether by data or by hypothesis)?_
+*Root Mean squared error: 1.79*
 
 
 ## III. Methodology
