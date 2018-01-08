@@ -294,7 +294,7 @@ The results were worse with an RMSE of **3.11**. This clearly shows that we don'
 
 If we were predicting an entire index then maybe we could have leveraged decades worth of data. This is fine if we are trying to predict an index such as Dow Jones, FTSE 100, German DAX. However, with Broadcom stock I decided to make do with 5 years worth of data. I mentioned previously in this writeup as to why I chose to do so. The original company Avago(AVGO) has been buying up companies to grow their EPS and finally bought Broadcom and took it company name but kept the stock ticker as AVGO. Before 5 years it was a totally different company.
 
-While experimenting with the data, it became clear that the time series cross validators need data and thus is decided to keep 1248 points for training and validation. Thus I had a remaining 10 points for testing my model. This is low but I feel this is a compromise since the training/validation phase needs a lot of data.
+While experimenting with the data, it became clear that the time series cross validators need data and thus is decided to keep 1248 points for training and validation. Thus I had a remaining 10 points for testing my model. This is low but I feel this is a compromise since the training/validation phase needs a lot of data. In some respect apart from doing fundamental company research if we use this model to predict the next day's closing adjusted stock price we should in theory have to use all available data upto the curent trading day.
 
 Here are some results.
 
@@ -316,7 +316,7 @@ Without Apple and SMH data and dropping the "Low" stock price of the day the RMS
 
 This happens to be my final model.
 
-The features that i used in this are specific only to Broadcom stock itself and are **'Open','Volume','Adj Close' and  'High'**
+The features that I used in this are specific only to Broadcom stock itself and are **'Open','Volume','Adj Close' and  'High'**
 
 An RMSE of 0.61 is good and means that we can predict with 60 cents of the next day's stock price.
 This is an improvement on the Benchmark model.
@@ -333,11 +333,10 @@ This is an improvement.Hence, the final results are found stonger than the initi
 We cannot shuffle the data since we are dealing with time series data which have a chronological dependence.
 
 The results found from the model can be trusted because for all but the first data point we have the original **next trading day's closing adjusted stock price**. We can easily compare the actual and predicted. However, i would have liked to predict within a few cents instead of around 60 cents.
-It is entirely possible that this model is susceptible to noise and perturbations. Let me explain this; the last 20 odd training days have been interesting for Broadcom, it is involved in a proxy fight with Qualcomm, then there are concerns over Iphone shipments, then there seems to be a sector rotation in stocks from tech to Financials so the model may be susceptible to events.
+It is entirely possible that this model is susceptible to noise and perturbations. Let me explain this; the last 20 odd training days have been interesting for Broadcom, it is involved in a proxy fight with Qualcomm, then there are concerns over Iphone shipments, then there seems to be a sector rotation in stocks from Tech to Financials so the model may be susceptible to events.
 
 
-- _Have you thoroughly analyzed and discussed the final solution?_
-- _Is the final solution significant enough to have solved the problem?_
+My final model is better than the benchmark. However, we can see that though we get an improvement it is not within cents. High frequency traders these days are able to leverage algorithms and detect minute market inefficiencies and make cents on a stock. So in that respect, i expect there to exist several other propriety models that will perform better.
 
 
 ## V. Conclusion
@@ -368,6 +367,8 @@ The final model and solution does fit my expectation to some extent. I would hav
 I would have liked to do the following in my project.
 
 - Allow the user the flexibility to select a certain stock and do the analysis presented in the project notebook on the stock. There is one immediate concern that comes to my mind. Since Broadcom is a semiconductor company and is a big Apple supplier, i decided to use Apple stock and the SMH ETF data for my analysis. On further analysis these were found not to be necessary. However for Southwest Airlines, Oil industry data might be useful. I will also need to code up more general user defined functions that can take a stock symbol and dataframe and perform all the necessary analysis.
+
+- Allow the user to select the date range. python apis can be leveragred to pull in data for only these date ranges. Please be aware that a sufficient amount of data will be required for training purposes.
 
 - I would loved to have used neural networks and try out LTSM. The main reason for not doing so is becuase I am not yet fully aware of LTSM and i didn't want to use something that i didn't have a good grasp of. If I had a good grasp of LTSM, i would defintely have tried using it in my project. LTSM should give good results for time series data. I intend to try this out at a later date as time permits.
 
