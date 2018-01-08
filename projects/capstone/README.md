@@ -27,3 +27,7 @@ from math import sqrt
 from sklearn.svm import SVR
 import random
 ```
+
+The capstone proposal review can be seen at
+
+[Capstone Proposal Review](https://review.udacity.com/#!/reviews/935978)
