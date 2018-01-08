@@ -315,10 +315,14 @@ In this section, your model’s final solution and its results should be compare
 
 ### Free-Form Visualization
 
-In this section, you will need to provide some form of visualization that emphasizes an important quality about the project. It is much more free-form, but should reasonably support a significant result or characteristic about the problem that you want to discuss. Questions to ask yourself when writing this section:
-- _Have you visualized a relevant or important quality about the problem, dataset, input data, or results?_
-- _Is the visualization thoroughly analyzed and discussed?_
-- _If a plot is provided, are the axes, title, and datum clearly defined?_
+Given that I am not attmepting to use any other stock's data to predict the next day's closing adjusted stock price of Broadcom, it is conceivable that we can use the same featuers and use it for all other stocks. In this way we can perhaps do a stock screen. This however would take up a lot of time and processing power. I started of thinking that using SMH and Apple Data will enhance the Broadcom data and perhaps give a btter solution. This was however found not to be the case. This is surprising; however this is good in anothr way. This probably goes onto show that a very large component of my prediction is "baked" into the various features of the stock itslef. Lets us take 2 examples
+
+- Let us say there is a good report about Apple selling more iphones than predicted. This will lead to increased volume/incresed stock price of apple. Based on market dynamics, investors trying to diversify may choose to buy Broadcom since it supplies various companies. So Broadcom will aslo see buying interset and increased volume may lead to increased stock price. Thus there is no need to depend on Apple Data
+
+- Let us say there is a "sector rotation" and investors want to move out semiconductors stock. The whole sector maybe down. Negative sentiment from the sector will translate to selling pressure on semiconductor stocks including Broadcom. Thus there may be a case to not need SMH data for Broadcom analysis.
+
+These 2 show that it is possible to make predictions on a certain stock by simple concentrating on data pertainig to that stock itself. This is clearly shown by the RMSE which did not improve when i appended Broadcom data with Apple and SMH.
+
 
 ### Reflection
 
