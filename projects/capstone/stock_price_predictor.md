@@ -319,17 +319,23 @@ This happens to be my final model.
 The features that i used in this are specific only to Broadcom stock itself and are **'Open','Volume','Adj Close' and  'High'**
 
 An RMSE of 0.61 is good and means that we can predict with 60 cents of the next day's stock price.
-This is an improvement on the Benchamrk model.
+This is an improvement on the Benchmark model.
+
+
+### Justification
+
+As mentioned above the Benchmark model had an RMSE of **1.79**
+
+The final model based of a random forest regressor has an RMSE of **0.61**
+
+This is an improvement.Hence, the final results are found stonger than the initial benchmark model results.
 
 We cannot shuffle the data since we are dealing with time series data which have a chronological dependence.
 
 The results found from the model can be trusted because for all but the first data point we have the original **next trading day's closing adjusted stock price**. We can easily compare the actual and predicted. However, i would have liked to predict within a few cents instead of around 60 cents.
 It is entirely possible that this model is susceptible to noise and perturbations. Let me explain this; the last 20 odd training days have been interesting for Broadcom, it is involved in a proxy fight with Qualcomm, then there are concerns over Iphone shipments, then there seems to be a sector rotation in stocks from tech to Financials so the model may be susceptible to events.
 
-### Justification
 
-In this section, your model’s final solution and its results should be compared to the benchmark you established earlier in the project using some type of statistical analysis. You should also justify whether these results and the solution are significant enough to have solved the problem posed in the project. Questions to ask yourself when writing this section:
-- _Are the final results found stronger than the benchmark result reported earlier?_
 - _Have you thoroughly analyzed and discussed the final solution?_
 - _Is the final solution significant enough to have solved the problem?_
 
