@@ -4,7 +4,7 @@ Sandeep Paulraj
 January 7th, 2018
 
 ## I. Definition
-_(approx. 1-2 pages)_
+
 
 ### Project Overview
 
@@ -54,7 +54,7 @@ rms = sqrt(mean_squared_error(y_actual, y_predicted))
 ```
 
 ## II. Analysis
-_(approx. 2-4 pages)_
+
 
 ### Data Exploration
 
@@ -118,10 +118,38 @@ My analysis will try to answers these questions.
 
 ### Algorithms and Techniques
 
-In this section, you will need to discuss the algorithms and techniques you intend to use for solving the problem. You should justify the use of each one based on the characteristics of the problem and the problem domain. Questions to ask yourself when writing this section:
-- _Are the algorithms you will use, including any default variables/parameters in the project clearly defined?_
-- _Are the techniques to be used thoroughly discussed and justified?_
-- _Is it made clear how the input data or datasets will be handled by the algorithms and techniques chosen?_
+Since we are dealing with time series data we have to deal with the data in a chronological manner.
+We also need to do cross validation. The links provide a good reference for time series cross validation.
+
+[Cross-validation for time series](https://robjhyndman.com/hyndsight/tscv/)
+
+[Pythonic Cross Validation on Time Series](http://francescopochetti.com/pythonic-cross-validation-time-series-pandas-scikit-learn/)
+
+[Using k-fold cross-validation for time-series model selection](https://stats.stackexchange.com/questions/14099/using-k-fold-cross-validation-for-time-series-model-selection)
+
+[sklearn time series split](http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html)
+
+[sklearn: User defined cross validation for time series data](https://stackoverflow.com/questions/33928131/sklearn-user-defined-cross-validation-for-time-series-data)
+
+As mentioned previously in this writeup, we are fundamentally dealing with a regression problem and not a classification problem. Hence this project is unique in that i have not had to deal with the time series regression before so it is a good learning experience.
+
+I will try Linear Regresssion and it is possible for a simple model to provide good results. However, I intend to try other regressors such as SVR(Support Vector Regression), Decision Tree Regressor and Random Forest. Random Forest is a time series algorithm implemented in time series forecasting. Please see a citation below.
+
+[Stock Price Prediction using Random Forest](https://arxiv.org/pdf/1605.00003.pdf)
+
+Other citations and refernces for the other regressors i intend to try in the project.
+
+[Decision Tree Regressor](http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html)
+
+[SGD Regressor](http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDRegressor.html)
+
+[Support Vector Regressor](http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html)
+
+I will be trying the various regressors mentioend above along with GridSearchCV. It is at this stage that i will setup a dictionary of parameters from which to try out various options.
+
+My prediction data will be the "next trading day's adjusted closing stock price".
+Initially atleast i intend to use all the featuers present in the data set downloaded from yahoo finance.
+
 
 ### Benchmark
 
@@ -130,25 +158,132 @@ As suggested in the capstone proposal review, I will train and test an out-of-th
 Using the RMSE metric i found out that that for the Benchmark Linear model the RMSE was 1.79.
 This can also be seen in the ipython notebook.
 
-*Root Mean squared error: 1.79*
+**Root Mean squared error: 1.79**
 
 
 ## III. Methodology
 _(approx. 3-5 pages)_
 
 ### Data Preprocessing
-In this section, all of your preprocessing steps will need to be clearly documented, if any were necessary. From the previous section, any of the abnormalities or characteristics that you identified about the dataset will be addressed and corrected here. Questions to ask yourself when writing this section:
-- _If the algorithms chosen require preprocessing steps like feature selection or feature transformations, have they been properly documented?_
-- _Based on the **Data Exploration** section, if there were abnormalities or characteristics that needed to be addressed, have they been properly corrected?_
-- _If no preprocessing is needed, has it been made clear why?_
+
+After obtaining my data I intend to follow these steps.
+
+- Reverse the rows since as an example February 1 comes before February 2 in the downloaded data. I want it to be the other way round for analysis purposes. To clarify again, the reversal of the rows is just a matter of convenience while depicting the data. I prefer to see recent dates on the top.
+- Append a column with trading price range (High - Close)
+- Add the following day's stock price. This will be what we are trying to predict.
+- Depending on results of various models/scenarios I may and in all likelihood have to append data pertaining to Apple and SMH to the Broadcom data.
+
+I have to mention that the data obtainted from yahoo was clean and did not contain any "NaN".
+In a way this is on expected lines. The ticker symbols i am dealing with are well known and the various features such as "Open", "Close", "Volume" have no reason to be missing.
+
+As can be seen in the notebook, there is some amount of work involved to obtain the next tarding day's adjusted closing stock price and concat this to the Broadcom data. However, there are well known routines such as **concat** to aid in this. Infact **concat** is used agin to append Apple and SMH closing adjusted stock price to the Broadcom data.
+
+Since the stock volume data has a very high unit, i thought it would be necessary to do some preprocessing on this. However, it did not have nay effect on the model analysis so i didn't do any preprocessing. 
+
 
 ### Implementation
-In this section, the process for which metrics, algorithms, and techniques that you implemented for the given data will need to be clearly documented. It should be abundantly clear how the implementation was carried out, and discussion should be made regarding any complications that occurred during this process. Questions to ask yourself when writing this section:
-- _Is it made clear how the algorithms and techniques were implemented with the given datasets or input data?_
-- _Were there any complications with the original metrics or techniques that required changing prior to acquiring a solution?_
-- _Was there any part of the coding process (e.g., writing complicated functions) that should be documented?_
+
+So the first thing to attempt is to successfully use the various regressors such random forest regressor, decision tree regressors and svr. I did not use time series cross validation initially. This is becuase i had never previosuly used these regressors and i did not know how to integrate the time series cross validator.
+
+Immediatley with the initial data without appending Apple and SMH data, I could see that among the various regressors the Random Forest Regressor was giving the best results by checking the RMSE metric.
+
+The next stage of the project involved using the time series cross validator and integrating this into the project flow.
+
+```sh
+tscv = TimeSeriesSplit(n_splits = 10)
+tscv.split(X_train,y_train)
+```
+
+I use the sklearn **TimeSeriesSplit** with a splits parameter of 10 and this becomes my time series cross validator, tscv. My next step is to choose a regressor. I chose the **DecisionTreeRegressor** and the **RandomForestRegressor**. I did not use SVR since in the pervious step I did not get good results with SVR. Also I began to notice that training was taking a very long time with SVR so i dropped it for further analysis. I used **GridSearchCV** with the 2 mentioned regressors and I see an improvement in the results for Random Forest Regressor. This also happend to be the first time I have successfully integrated time series cross validation, regression and grid search cv in my project workflow.
+
+The RandomForestRegressor gave good results with an RMSE of **1.01**
+
+This means that I am able to predict the next day's adjusted closing stock price to the dollar which is good. In the ensuing sections I will attempt to make this even better.
+
+**Root Mean squared error: 1.01**
+
+The general flow for all the regressors and trials will be as follows and is also labelled in the notebook.
+
+```sh
+- Do Time Series Split
+tscv = TimeSeriesSplit(n_splits = 10)
+tscv.split(X_train,y_train)
+
+- Create a regressor object, it can be random forest or decision tree or K neighbours.
+regr = RandomForestRegressor() 
+
+- Setup a dictionary of params to search
+parameters = {'min_samples_leaf':range(1,10)}
+
+- Peform Grid Search
+grid = GridSearchCV(regr, parameters, cv=tscv)
+
+- Fit The Data
+grid = grid.fit(X_train,y_train)
+
+- Find Optimal Model
+grid.best_estimator_
+```
+
 
 ### Refinement
+
+Now, i proceed to add Apple and SMH data to my feature set. I do this in the following way mentioned below.
+
+```sh
+avgo_enhanced = pd.concat([avgo,aapl,smh], axis = 1, join='inner')
+```
+
+I tried various combinations by adding/removing features from the training data.
+After much experimentation i found that the best features to leverage to predict the next trading day's adjusted closing stock price were **'Open','Volume','Adj Close' and 'High'**
+
+I also have training data called **X_with_aapl_smh** with the features **'Open','Volume','Adj Close', 'High', 'Low', 'SMH Adj Close' and 'AAPL Adj Close'**. 
+
+```sh
+X = avgo_enhanced[['Open','Volume','Adj Close', 'High']].as_matrix()
+X_with_aapl_smh = avgo_enhanced[['Open','Volume','Adj Close', 'High', 'Low', 'SMH Adj Close', 'AAPL Adj Close']].as_matrix()
+```
+
+My prediction values are below.
+
+```sh
+y = avgo_enhanced['Day 1'].values
+```
+
+At this stage i proceed to try and find an optimal solution. I try out various regressors. I had earlier dropped SVR but at this stage i decided to try **KNeighborsRegressor** and **KNeighborsRegressor**. Both these 2 gave poor results so I decided that I was not going to use them any more. I decided to stick with the random forest and decision tree regressor.
+
+The **DecisionTreeRegressor** regressor gave me an RMSE of **4.68**.
+
+The **RandomForestRegressor** regerssor gave me an initial RMSE of **0.97**
+
+I then decided to modify some of the parameters of the RandomForestRegressor to gauge if this could improve my model.
+
+My model is as follows.
+
+```sh
+def rfr(X, y):
+    #Do Time Series Split
+    tscv = TimeSeriesSplit(n_splits = 10)
+    tscv.split(X_train,y_train)
+    
+    #Create a Random Forest regressor object
+    regr = RandomForestRegressor(n_estimators = 20)
+
+    parameters = {'min_samples_leaf':range(1,10)}
+    
+    #Peform Grid Search
+    grid = GridSearchCV(regr, parameters, cv=tscv)
+
+    #Fit The Data
+    grid = grid.fit(X_train,y_train)
+
+    #Find Optimal Model
+    return grid.best_estimator_
+
+```
+
+With this my RMSE reduced to **0.61**
+
 In this section, you will need to discuss the process of improvement you made upon the algorithms and techniques you used in your implementation. For example, adjusting parameters for certain models to acquire improved solutions would fall under the refinement category. Your initial and final solutions should be reported, as well as any significant intermediate results as necessary. Questions to ask yourself when writing this section:
 - _Has an initial solution been found and clearly reported?_
 - _Is the process of improvement clearly documented, such as what techniques were used?_
