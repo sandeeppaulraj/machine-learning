@@ -9,6 +9,7 @@
 [image4]: ./output_images/avgo_high_low.jpg "Broadcom High-Low Stock Price"
 [image5]: ./output_images/avgo_data.jpg "Broadcom Stock Data"
 [image6]: ./output_images/avgo_summary_stats.jpg "Broadcom Summary Stats"
+
 ---
 
 ## Stock Price Predictor
