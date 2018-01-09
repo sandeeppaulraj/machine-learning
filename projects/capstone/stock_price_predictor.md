@@ -7,7 +7,8 @@
 [image2]: ./output_images/avgo_adj_close.jpg "Broadcom Adjusted Closing Stock Price"
 [image3]: ./output_images/avgo_volume.jpg "Broadcom Stock Trading Volume"
 [image4]: ./output_images/avgo_high_low.jpg "Broadcom High-Low Stock Price"
-
+[image5]: ./output_images/avgo_data.jpg "Broadcom Stock Data"
+[image6]: ./output_images/avgo_summary_stats.jpg "Broadcom Summary Stats"
 ---
 
 ## Stock Price Predictor
@@ -106,6 +107,12 @@ The following are two good sources of how to avoid lookahead bias. I am adding t
 [Avoiding Look Ahead Bias in Time Series Modelling](https://www.datasciencecentral.com/profiles/blogs/avoiding-look-ahead-bias-in-time-series-modelling-1)
 
 The associated ipython notebook clearly depicts all the data that has been setup and used for the analysis. I also provide summary statistics for the the dataset as well.
+
+![alt text][image5]
+
+
+
+![alt text][image6]
 
 
 ### Exploratory Visualization
