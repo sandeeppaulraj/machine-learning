@@ -3,8 +3,8 @@
 ---
 [//]: # (Image References)
 
-[image1]: ./output_images/avgo_open.jpg.jpg "Broadcom Opening Stock Price"
-[image2]: ./output_images/avgo_adj_close.jpg.jpg "Broadcom Adjusted Closing Stock Price"
+[image1]: ./output_images/avgo_open.jpg "Broadcom Opening Stock Price"
+[image2]: ./output_images/avgo_adj_close.jpg "Broadcom Adjusted Closing Stock Price"
 [image3]: ./output_images/avgo_volume.jpg "Broadcom Stock Trading Volume"
 [image4]: ./output_images/avgo_high_low.jpg "Broadcom High-Low Stock Price"
 
