@@ -1,7 +1,18 @@
 # Machine Learning Engineer Nanodegree
+
+---
+[//]: # (Image References)
+
+[image1]: ./output_images/avgo_open.jpg.jpg "Broadcom Opening Stock Price"
+[image2]: ./output_images/avgo_adj_close.jpg.jpg "Broadcom Adjusted Closing Stock Price"
+[image3]: ./output_images/avgo_volume.jpg "Broadcom Stock Trading Volume"
+[image4]: ./output_images/avgo_high_low.jpg "Broadcom High-Low Stock Price"
+
+---
+
 ## Stock Price Predictor
 Sandeep Paulraj  
-January 8th, 2018
+January 9th, 2018
 
 ## I. Definition
 
@@ -23,17 +34,16 @@ Some papers which discuss machine learning techniques are sited below.
 
 ### Problem Statement
 
-In this project, I will attempt to predict the next trading day's adjusted closing stock price for Broadcom. Broadcom is semiconductor company that is a major Apple supplier and has been very aggresively buying other companies to grow its portfolio. It is in the process of orchestarting a takeover of Qualcomm as well. I will attempt to use Broadcom stock data from yahoo finance in my model.
-I will also attempt to gauge if Apple stock has an effect on the Broadcom stock price. Also, i will try to guage if the VanEck Vectors Semiconductor ETF has an effect on Broadcom.
+In this project, I will attempt to predict the next trading day's adjusted closing stock price for Broadcom. This is a regression problem and NOT a classification problem. Broadcom is semiconductor company that is a major Apple supplier and has been very aggresively buying other companies to grow its portfolio. It is in the process of orchestarting a takeover of Qualcomm as well. I will attempt to use Broadcom stock data from yahoo finance in my model.I will also attempt to gauge if Apple stock has an effect on the Broadcom stock price. Also, i will try to guage if the VanEck Vectors Semiconductor ETF has an effect on Broadcom.
 
-Initially while going through the capstone review process, I was attempting to predict the following seven trading day's Adjusted Closing stock price. However, capstone review comments suggested that I should only try to predict the following trading day's Adjusted closing stock price. On thinking about this a little more, we have to be cognizant of the fact that there are several geopolitical uncertainties that exist in the market. Let us take an example: Let us say the US amrkets end a day strong; Japan and Asia start of strong but towards the end of the Asian trading day, there is some bad news on economic indictors or say there was a data breach. Asia may end up weak and this will in all likelihood have an impact on European markets which then digest this information and actually have a bad day. Europe has a bad trading day and markets end down. This sequence of events, results in the US markets starting of week. Thus, it is difficult to make informed judgments of stock prices seven trading days ahead. To think of it, if we are on a Friday evening trying to gauge the following seven trading days' closing adjusted stock price; that is trying to go as far ahead as the next to next Tuesday, we have two weekends in between where a lot of events might happen. Based on this and my first capstone review, it was decided to predict only the next trading day's adjsuetd closing stock price.
+Initially while going through the capstone review process, I was attempting to predict the following seven trading day's Adjusted Closing stock price. However, capstone review comments suggested that I should only try to predict the following trading day's Adjusted closing stock price. On thinking about this a little more, we have to be cognizant of the fact that there are several geopolitical uncertainties that exist in the market. Let us take an example: Let us say the US amrkets end a day strong; Japan and Asia start of strong but towards the end of the Asian trading day, there is some bad news on economic indictors or say there was a data breach. Asia may end up weak and this will in all likelihood have an impact on European markets which then digest this information and actually have a bad day. Europe has a bad trading day and markets end down. This sequence of events, results in the US markets starting of week. Thus, it is difficult to make informed judgments of stock prices seven trading days ahead. To think of it, if we are on a Friday evening trying to gauge the following seven trading days' closing adjusted stock price; that is trying to go as far ahead as the next to next Tuesday, we have two weekends in between where a lot of events might happen. Based on this and my first capstone review, it was decided to predict only the next trading day's adjusted closing stock price.
 
 Why do i want to use Apple and SMH?
 
 - I decided to use Apple Data since Broadcom is a major Apple supplier
 - I decided to use SMH since it is a semiconductor ETF and broadcom is a semiconductor company.
 
-I will use various regression techniques in my various models and settle for the model that performs the best. Now is a good time to note that we are dealing with Time Series of data and will need special consideration. We cannot shuffle the data in any of our analysis. This actually is a good deviation from what i have learned in the Nanodegree since we didn't exactly learn how to deal with Time Series data. Different types of regressors will be required. In the end, it is anticipated that I will end up learning new models and techniques.
+I will use various regression techniques in my various models and settle for the model that performs the best. Now is a good time to note that we are dealing with Time Series of data and will need special consideration. We cannot shuffle the data in any of our analysis. This actually is a good deviation from what i have learned in the Nanodegree since we didn't exactly learn how to deal with Time Series data. Different types of regressors will be required. In the end, it is anticipated that I will end up learning new models and techniques. Since we are dealing with a regression problem I intend to try out regressors such as RandomForestRegressor, DecisionTreeRegressor, Support Vector Regressor, SGDRegressor and even KNeighborsRegressor.
 
 The strategy I will employ will be to setup a dataframe of Broadcom stock price. Initially atleast, I will use all the data provided as my features. My prediction data will actually be the next trading days' adjusted closing stock price. This will need some amount of data manipulation since. I explain this in the section below. I will run various regression models to predict my "next trading days' adjusted closing stock price". My benchmark model will be a simple linear regression model and the final model should be better then this simple linear regression. This is however not guaranteed as sometimes simple models also provide good results.
 
@@ -50,6 +60,10 @@ from math import sqrt
 
 rms = sqrt(mean_squared_error(y_actual, y_predicted))
 ```
+
+The reason for using RMSE is becuase it will give us the difference between the stock's actual and predicted adjusted closing stock price.
+
+The mean squared errors(MSE) will give us the sqaure of the difference between the stock's actual and predicted adjusted closing stock price. Thus we will have a positive value even when the differnce is negative. If we don't use a squared value then positive and negative values will cancel each other, i.e. underestimates and overestimates will cancel each other. The reasoning behing taking the square root using **sqrt** function is to get an error value in terms of stock price and not the squared value of the stock price.
 
 ## II. Analysis
 
@@ -114,6 +128,21 @@ However, this also gives a clue that it may be prudent not to use all the featur
 My analysis will try to answers these questions.
 
 
+![alt text][image1]
+
+
+
+![alt text][image2]
+
+
+
+![alt text][image3]
+
+
+
+![alt text][image4]
+
+
 ### Algorithms and Techniques
 
 Since we are dealing with time series data we have to deal with the data in a chronological manner.
@@ -176,7 +205,13 @@ In a way this is on expected lines. The ticker symbols I am dealing with are wel
 
 As can be seen in the notebook, there is some amount of work involved to obtain the next trading day's adjusted closing stock price and concat this to the Broadcom data. However, there are well known routines such as **concat** to aid in this. Infact **concat** is used agin to append Apple and SMH closing adjusted stock price to the Broadcom data.
 
-Since the stock volume data has a very high unit, i thought it would be necessary to do some preprocessing on this. However, it did not have nay effect on the model analysis so i didn't do any preprocessing. 
+Since the stock volume data has a very high unit, i thought it would be necessary to do some preprocessing on this. Thus, i have performed preprocessing using **MinMaxScaler**. The relevant is also shown below.
+
+```sh
+scaler = MinMaxScaler()
+
+avgo[['Volume']] = scaler.fit_transform(avgo[['Volume']])
+```
 
 
 ### Implementation
@@ -248,7 +283,7 @@ My prediction values are below.
 y = avgo_enhanced['Day 1'].values
 ```
 
-At this stage I proceed to try and find an optimal solution. I try out various regressors. I had earlier dropped SVR but at this stage I decided to try **KNeighborsRegressor** and **KNeighborsRegressor**. Both these 2 gave poor results so I decided that I was not going to use them any more. I decided to stick with the random forest and decision tree regressor.
+At this stage I proceed to try and find an optimal solution. I try out various regressors. I had earlier dropped SVR but at this stage I decided to try **DecisionTreeRegressor** and **RandomForestRegressor**. Both these 2 gave poor results so I decided that I was not going to use them any more. I decided to stick with the random forest and decision tree regressor.
 
 The **DecisionTreeRegressor** regressor gave me an RMSE of **4.68**.
 
