@@ -159,7 +159,7 @@ Below is a plot of the Difference between Daily High and Low Stock Price of Broa
 ![alt text][image4]
 
 
-Below is a combined plot of the above four plots.
+Below is a combined plot of the above four plots. Please notice that there is usually a "stock price movement" with volatility and volume. In some respect the difference between High and Low Stock Price is a measure of volatility.
 
 ![alt text][image7]
 
