@@ -138,18 +138,21 @@ However, this also gives a clue that it may be prudent not to use all the featur
 
 My analysis will try to answers these questions.
 
+Below is a plot of the Opening Stock Price of Broadcom(AVGO) over the last 5 years.
 
 ![alt text][image1]
 
 
+Below is a plot of the Adjusted Closing Stock Price of Broadcom(AVGO) over the last 5 years.
 
 ![alt text][image2]
 
 
+Below is a plot of the Normalized Trading Volume of Broadcom(AVGO) over the last 5 years.
 
 ![alt text][image3]
 
-
+Below is a plot of the Difference between Daily High and Low Stock Price of Broadcom(AVGO) over the last 5 years.
 
 ![alt text][image4]
 
@@ -171,22 +174,34 @@ We also need to do cross validation. The links provide a good reference for time
 
 As mentioned previously in this writeup, we are fundamentally dealing with a regression problem and not a classification problem. Hence this project is unique in that I have not had to deal with the time series regression before so it is a good learning experience.
 
-I will try Linear Regresssion and it is possible for a simple model to provide good results. However, I intend to try other regressors such as SVR(Support Vector Regression), Decision Tree Regressor and Random Forest. Random Forest is a time series algorithm implemented in time series forecasting. Please see a citation below.
+I will try Linear Regresssion and it is possible for a simple model to provide good results. However, I intend to try other regressors such as SVR(Support Vector Regression), Decision Tree Regressor and Random Forest. Random Forest is a time series algorithm implemented in time series forecasting. Please see citations below in the vartious sub sections
 
-[Stock Price Prediction using Random Forest](https://arxiv.org/pdf/1605.00003.pdf)
-
-Other citations and references for the other regressors I intend to try in the project.
-
-[Decision Tree Regressor](http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html)
-
-[SGD Regressor](http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.SGDRegressor.html)
-
-[Support Vector Regressor](http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html)
-
-I will be trying the various regressors mentioend above along with GridSearchCV. It is at this stage that i will setup a dictionary of parameters from which to try out various options.
+I will be trying the various regressors mentioned above along with GridSearchCV. It is at this stage that i will setup a dictionary of parameters from which to try out various options.
 
 My prediction data will be the **next trading day's adjusted closing stock price**.
 Initially atleast I intend to use all the featuers present in the data set downloaded from yahoo finance.
+
+[Decision Tree and Random Forest](https://towardsdatascience.com/decision-trees-and-random-forests-for-classification-and-regression-pt-2-2b1fcd03e342)
+
+#### Decision Tree Regressor
+
+A decsion tree is a type of directed acylic graph. One of the reaons i decided to try the **DecisionTreeRegressor** is because they are fairly robust on small datasets and we have a small number of data points in our study. Decision trees are easy to understand and easy to interpret. They are also much faster to train. They perform well with a mix of both categorical and numerical data. With decision trees you don't really need to be concerned about normalizing/scaling the data.
+
+[Decision Tree Regressor](http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html)
+
+
+#### Random Forest Regressor
+
+Random Forests are an extension to decision trees. The basic premise of random forests are that they combine decision trees with bootstrap aggregation making them more robust and less prone to overfitting compared to a decision tree. Bootstraping is a powerful method to reduce model variances. At each split point, decision trees split based on one feature variable, whereas random forest split based on multiple feature variables. Random Forests essentially are an ensemble of decision trees. Random Foerst are more computationally expensice when compared to decision trees. 
+
+[Stock Price Prediction using Random Forest](https://arxiv.org/pdf/1605.00003.pdf)
+
+
+#### Support Vector Regressor
+
+I initially tried 
+
+[Support Vector Regressor](http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html)
 
 
 ### Benchmark
@@ -390,7 +405,7 @@ My final model is better than the benchmark. However, we can see that though we 
 
 ### Free-Form Visualization
 
-Given that I am not attmepting to use any other stock's data to predict the next day's closing adjusted stock price of Broadcom, it is conceivable that we can use the same featuers and use it for all other stocks. In this way we can perhaps do a stock screen. This however would take up a lot of time and processing power. I started off, thinking that using SMH and Apple Data will enhance the Broadcom data and perhaps give a btter solution. This was however found not to be the case. This is surprising; however this is good in anothr way. This probably goes onto show that a very large component of my prediction is "baked" into the various features of the stock itself. Lets us take 2 examples
+Given that I am not attmepting to use any other stock's data to predict the next day's closing adjusted stock price of Broadcom, it is conceivable that we can use the same featuers and use it for all other stocks. In this way we can perhaps do a stock screen. This however would take up a lot of time and processing power. I started off, thinking that using SMH and Apple Data will enhance the Broadcom data and perhaps give a better solution. This was however found not to be the case. This is surprising; however this is good in anothr way. This probably goes onto show that a very large component of my prediction is "baked" into the various features of the stock itself. Lets us take 2 examples
 
 - Let us say there is a good report about Apple selling more iphones than predicted. This will lead to increased volume/incresed stock price of apple. Based on market dynamics, investors trying to diversify may choose to buy Broadcom since it supplies various companies. So Broadcom will aslo see buying interset and increased volume may lead to increased stock price. Thus there is no need to depend on Apple Data.
 
