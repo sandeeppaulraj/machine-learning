@@ -9,6 +9,7 @@
 [image4]: ./output_images/avgo_high_low.jpg "Broadcom High-Low Stock Price"
 [image5]: ./output_images/avgo_data.jpg "Broadcom Stock Data"
 [image6]: ./output_images/avgo_summary_stats.jpg "Broadcom Summary Stats"
+[image7]: ./output_images/avgo_combo.jpg "Broadcom Combo Plot"
 
 ---
 
@@ -152,10 +153,15 @@ Below is a plot of the Normalized Trading Volume of Broadcom(AVGO) over the last
 
 ![alt text][image3]
 
+
 Below is a plot of the Difference between Daily High and Low Stock Price of Broadcom(AVGO) over the last 5 years.
 
 ![alt text][image4]
 
+
+Below is a combined plot of the above four plots.
+
+![alt text][image7]
 
 ### Algorithms and Techniques
 
