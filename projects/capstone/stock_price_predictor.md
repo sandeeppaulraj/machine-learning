@@ -192,14 +192,14 @@ A decsion tree is a type of directed acylic graph. One of the reaons i decided t
 
 #### Random Forest Regressor
 
-Random Forests are an extension to decision trees. The basic premise of random forests are that they combine decision trees with bootstrap aggregation making them more robust and less prone to overfitting compared to a decision tree. Bootstraping is a powerful method to reduce model variances. At each split point, decision trees split based on one feature variable, whereas random forest split based on multiple feature variables. Random Forests essentially are an ensemble of decision trees. Random Foerst are more computationally expensice when compared to decision trees. 
+Random Forests are an extension to decision trees. The basic premise of random forests are that they combine decision trees with bootstrap aggregation making them more robust and less prone to overfitting compared to a decision tree. Bootstraping is a powerful method to reduce model variances. At each split point, decision trees split based on one feature variable, whereas random forest split based on multiple feature variables. Random Forests essentially are an ensemble of decision trees. Random Forests are more computationally expensive when compared to decision trees. 
 
 [Stock Price Prediction using Random Forest](https://arxiv.org/pdf/1605.00003.pdf)
 
 
 #### Support Vector Regressor
 
-I initially tried 
+I initially tried Support Vector Regression but dropped it for later analysis as the initial results itself were not good. Even after preprocessing the volume data with MinMaxScaler, I did not obtain good results. Support Vector Regressors uses the same basic idea as Support Vector Machine (SVM). SVM happens to be a classification algorithm. We are dealing with a regression problem and thus SVR predicts real values rather than a class. Support Vector Regressors acknowledges the presence of non-linearity in the data and provides a proficient prediction model.
 
 [Support Vector Regressor](http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html)
 
