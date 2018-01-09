@@ -1,6 +1,7 @@
 # Machine Learning Engineer Nanodegree
 
 ---
+
 [//]: # (Image References)
 
 [image1]: ./output_images/avgo_open.jpg "Broadcom Opening Stock Price"
