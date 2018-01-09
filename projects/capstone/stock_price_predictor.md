@@ -10,6 +10,7 @@
 [image5]: ./output_images/avgo_data.jpg "Broadcom Stock Data"
 [image6]: ./output_images/avgo_summary_stats.jpg "Broadcom Summary Stats"
 [image7]: ./output_images/avgo_combo.jpg "Broadcom Combo Plot"
+[image8]: ./output_images/avgo_pred_actual.jpg "Broadcom Actual Predicted Stock Price"
 
 ---
 
@@ -315,11 +316,11 @@ My prediction values are below.
 y = avgo_enhanced['Day 1'].values
 ```
 
-At this stage I proceed to try and find an optimal solution. I try out various regressors. I had earlier dropped SVR but at this stage I decided to try **DecisionTreeRegressor** and **RandomForestRegressor**. Both these 2 gave poor results so I decided that I was not going to use them any more. I decided to stick with the random forest and decision tree regressor.
+At this stage I proceed to try and find an optimal solution. I try out various regressors. I had earlier dropped SVR and at this stage I decided to try **DecisionTreeRegressor** and **RandomForestRegressor**. I decided to stick with the random forest and decision tree regressor.
 
 The **DecisionTreeRegressor** regressor gave me an RMSE of **4.68**.
 
-The **RandomForestRegressor** regerssor gave me an initial RMSE of **0.97**
+The **RandomForestRegressor** regressor gave me an initial RMSE of **0.97**
 
 I then decided to modify some of the parameters of the RandomForestRegressor to gauge if this could improve my model.
 
@@ -411,13 +412,17 @@ My final model is better than the benchmark. However, we can see that though we 
 
 ### Free-Form Visualization
 
-Given that I am not attmepting to use any other stock's data to predict the next day's closing adjusted stock price of Broadcom, it is conceivable that we can use the same featuers and use it for all other stocks. In this way we can perhaps do a stock screen. This however would take up a lot of time and processing power. I started off, thinking that using SMH and Apple Data will enhance the Broadcom data and perhaps give a better solution. This was however found not to be the case. This is surprising; however this is good in anothr way. This probably goes onto show that a very large component of my prediction is "baked" into the various features of the stock itself. Lets us take 2 examples
+We can see the actual vs predicted stock price. I would have loved for the model to be more accurate but we can also see that predictions are inline with actual adjusted closing stock price. They are not exactly way off.
+
+![alt text][image8]
+
+Given that I am not attempting to use any other stock's data to predict the next day's closing adjusted stock price of Broadcom, it is conceivable that we can use the same featuers and use it for all other stocks. In this way we can perhaps do a stock screen. This however would take up a lot of time and processing power. I started off, thinking that using SMH and Apple Data will enhance the Broadcom data and perhaps give a better solution. This was however found not to be the case. This is surprising; however this is good in anothr way. This probably goes onto show that a very large component of my prediction is "baked" into the various features of the stock itself. Lets us take 2 examples
 
 - Let us say there is a good report about Apple selling more iphones than predicted. This will lead to increased volume/incresed stock price of apple. Based on market dynamics, investors trying to diversify may choose to buy Broadcom since it supplies various companies. So Broadcom will aslo see buying interset and increased volume may lead to increased stock price. Thus there is no need to depend on Apple Data.
 
 - Let us say there is a "sector rotation" and investors want to move out of semiconductors stock. The whole sector maybe down. Negative sentiment from the sector will translate to selling pressure on semiconductor stocks including Broadcom. Thus there may be a case to not need SMH data for Broadcom analysis.
 
-These 2 show that it is possible to make predictions on a certain stock by simple concentrating on data pertainig to that stock itself. This is clearly shown by the RMSE which did not improve when I appended Broadcom data with Apple and SMH.
+These 2 show that it is possible to make predictions on a certain stock by simple concentrating on data pertaining to that stock itself. This is clearly shown by the RMSE which did not improve when I appended Broadcom data with Apple and SMH.
 
 
 ### Reflection
