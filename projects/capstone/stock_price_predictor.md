@@ -91,6 +91,10 @@ Clicking on the above links will also show the data I will be leveraging. I init
 
 The individual pieces of information that I will leverage for each day will be "Open", "High", "Low", "Close", "Volume" and "Adjusted Close". 1 year worth of data will provide approximately 250 data points. 5 years worth of data will result in approximately 1250 data points. The data range of the dataset will be between January 07, 2013 to January 05 2018.
 
+After obtaining the data and converting to a dataframe, I decided to display the summary statistics. This is depicted in the ipython notebook but I display the summary statistics below as well.
+
+![alt text][image6]
+
 What I will attempt to predict is the adjusted stock price 1 day ahead.
 
 We are dealing with time series data and data has to be handled chronologically. Also the stock price data is continuous is nature. So essentially we will have 5 years worth of data to predict the next trading day's closing stock price.
@@ -107,13 +111,12 @@ The following are two good sources of how to avoid lookahead bias. I am adding t
 
 [Avoiding Look Ahead Bias in Time Series Modelling](https://www.datasciencecentral.com/profiles/blogs/avoiding-look-ahead-bias-in-time-series-modelling-1)
 
-The associated ipython notebook clearly depicts all the data that has been setup and used for the analysis. I also provide summary statistics for the the dataset as well.
+
+Below, I depict the dataframe. This has the Stock Volume after having been preprocessed, the Stock "High-Low" price and also the project prediction column that is called Day1 prices. 
+
 
 ![alt text][image5]
 
-
-
-![alt text][image6]
 
 
 ### Exploratory Visualization
